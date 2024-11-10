@@ -1,0 +1,41 @@
+@import '../../../styles/_mixins'
+@import '../../../styles/_variables'
+
+%text-style
+  color: $color-gray
+  font-size: $font-size-2
+
+%flex-space-between
+  display: flex
+  justify-content: space-between
+
+.program-content
+  +card-wrapper
+
+.program-content__card
+  +card
+
+  &-header
+    @extend %flex-space-between
+
+  &-user,
+  &-date
+    @extend %text-style
+    font-weight: $font-weight-medium
+
+  &-user-container
+    display: flex
+    align-items: center
+
+  &-footer
+    @extend %flex-space-between
+    padding-right: 0.4375rem
+    margin-top: 3rem
+
+  &-profile-icon
+    width: 1.25rem
+    margin-right: 0.625rem
+
+  &-days
+    @extend %text-style
+    font-weight: $font-weight-normal

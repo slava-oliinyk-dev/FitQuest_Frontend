@@ -1,0 +1,38 @@
+@import '../../styles/_variables'
+@import '../../styles/_mixins'
+    
+.program
+    background-color: $content-bg-main
+    display: flex
+    position: relative
+    width: 100%
+    min-height: 100vh
+
+    &__main
+        flex-grow: 1
+        flex-direction: column
+        padding: 1.875rem 3.125rem 0rem 3.125rem
+        width: 100%
+        min-height: 100vh
+
+    &__modal-title
+        font-size: 1.75rem
+        margin-bottom: 0.938rem
+
+    &__modal-input
+        +modal-input
+        
+    &__modal-input::placeholder
+        font-size: $font-size-4
+        color: $color-gray
+
+    &__modal-btn-cancel
+        +modal-btn
+        margin-right: 1.875rem
+        background-color: $card-bg-color
+
+    &__modal-btn-add
+        +modal-btn
+        background-color: $color-orange
+
+       

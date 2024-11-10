@@ -1,0 +1,42 @@
+@import '../../styles/_variables'
+    
+.header
+    display: flex
+    justify-content: space-between
+    margin-bottom: 2.5rem
+    align-items: center
+
+    &__input-container 
+        position: relative
+        display: inline-block
+
+    &__input-field
+        background-color: $card-bg-color
+        width: 21.5625rem
+        height: 2.1875rem
+        border-radius: 0.3125rem
+        color: $color-white
+        outline: none
+        padding-left: 0.625rem
+
+        &::placeholder
+            color: $color-gray
+            font-size: $font-size-2
+            padding-left: 9.375rem
+
+        &:focus::placeholder
+            color: transparent
+        
+    &__icon
+        width: 1.8125rem
+        
+    &__input-icon
+        position: absolute
+        top: 25%
+        width: 1.125rem
+        margin-left: 8.125rem
+
+    &__input-container:focus-within .header__input-icon
+        display: none
+
+    
