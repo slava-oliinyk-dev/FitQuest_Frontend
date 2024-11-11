@@ -8,6 +8,9 @@
     width: 100%
     min-height: 100vh
 
+    &__spinner
+        margin-top: 12.5rem
+
     &__main
         flex-grow: 1
         flex-direction: column
@@ -30,9 +33,13 @@
         +modal-btn
         margin-right: 1.875rem
         background-color: $card-bg-color
+        &
+            @include interactive-item($card-bg-color-hover, $card-bg-color-active)
 
     &__modal-btn-add
         +modal-btn
         background-color: $color-orange
+        &
+            @include interactive-item($color-orange-hover, $color-orange-active)
 
        

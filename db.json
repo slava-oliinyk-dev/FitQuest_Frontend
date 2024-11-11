@@ -91,6 +91,20 @@
         "date": "04/10/2024"
       }
       
+    ],
+    "exercises": [
+      {
+        "name": "Bench Press",
+        "sets": 4,
+        "reps": 10,
+        "weight": "80kg"
+      },
+      {
+        "name": "Squats",
+        "sets": 5,
+        "reps": 12,
+        "weight": "100kg"
+      }
     ]
   }
   

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import "./Program.sass"
+import Spinner from '../../components/Spinner/Spinner'
 import ProgramContent from "./components/ProgramContent"
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Title from "../../components/Title/Title";
@@ -22,6 +23,7 @@ function Program() {
           throw new Error('Error while receiving data');
         }
         const data = await response.json();
+        
         setCards(data);
         setLoading(false);
       } catch (error) {
@@ -51,7 +53,9 @@ function Program() {
         <Header />
         <Title title="PROGRAMS" buttonText="New Program" onButtonClick={openModal} />
         {loading ? (
-          <p>Loading...</p>
+         <div className="program__spinner">
+           <Spinner />
+         </div>
         ) : (
           <ProgramContent page={page} cardsPerPage={cardsPerPage} cards={cards} />
         )}

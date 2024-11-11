@@ -12,8 +12,27 @@
 .program-content
   +card-wrapper
 
+  &__settings-menu li:first-child
+    @include settings-menu-item(0.75rem, 0.5625rem) 
+
+  &__settings-menu li:nth-child(2)
+    @include settings-menu-item(0.5625rem, 0.5625rem)
+
+  &__settings-menu li:last-child
+    @include settings-menu-item(0.5625rem, 0.75rem) 
+
+  &__icon-button
+    background-color: transparent
+    border-style: none
+
+  &__settings-icon
+    margin-right: 0.625rem 
+    width: 1.25rem 
+
 .program-content__card
   +card
+  &:hover
+    background-color: $card-bg-color-hover
 
   &-header
     @extend %flex-space-between
@@ -39,3 +58,5 @@
   &-days
     @extend %text-style
     font-weight: $font-weight-normal
+
+  

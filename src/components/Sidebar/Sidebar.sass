@@ -1,4 +1,5 @@
 @import "../../styles/_variables"
+@import "../../styles/_mixins"
 
 
 .sidebar
@@ -26,9 +27,17 @@
         width: 1.125rem
         margin-right: 1.25rem
 
+
         &--large
             margin-right: 0.8125rem
 
         &--medium
             margin-right: 1.125rem
-   
+
+.sidebar__menu-item.active 
+  background-color: #f0f0f0
+
+
+.sidebar__menu-item.active .sidebar__text 
+  color: #007bff
+

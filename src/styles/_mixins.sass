@@ -28,6 +28,13 @@
   align-items: center
   z-index: 1000 
 
+=settings-menu-item($padding-top, $padding-bottom)
+  display: flex
+  cursor: pointer
+  padding: $padding-top 0.75rem $padding-bottom 0.75rem
+  &
+    @include interactive-item(#333333, #3b3b3b)
+
 =modal
   background-color: #333
   padding: 1.25rem
@@ -76,3 +83,14 @@
   margin-bottom: 1.563rem
   padding-left: 0.625rem
   outline: none
+
+=interactive-item($hover-bg, $active-bg) 
+  cursor: pointer
+  
+  &:hover 
+    background-color: $hover-bg
+  
+  &:active 
+    background-color: $active-bg
+  
+

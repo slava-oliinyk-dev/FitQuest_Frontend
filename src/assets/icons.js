@@ -11,6 +11,9 @@ import profileIcon from './icons/profile.svg'
 import searchIcon from './icons/search.svg'
 import settingsIcon from './icons/settings.svg'
 import closeIcon from './icons/close.svg'
+import editIcon from './icons/edit.svg'
+import shareIcon from './icons/share.svg'
+import deleteIcon from './icons/delete.svg'
 
 export {
     gymIcon,
@@ -25,5 +28,8 @@ export {
     profileIcon,
     searchIcon,
     settingsIcon,
-    closeIcon
+    closeIcon,
+    editIcon,
+    shareIcon,
+    deleteIcon
 }
