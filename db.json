@@ -1,110 +1,96 @@
 {
     "cards": [
-      {
-        "title": "Strength Surge",
-        "days": "4 training days",
-        "user": "Slava",
-        "date": "04/10/2024"
-      },
-      {
-        "title": "Strength Surge",
-        "days": "4 training days",
-        "user": "Slava",
-        "date": "04/10/2024"
-      },
-      {
-        "title": "Strength Surge",
-        "days": "4 training days",
-        "user": "Slava",
-        "date": "04/10/2024"
-      },
-      {
-        "title": "Strength Surge",
-        "days": "4 training days",
-        "user": "Slava",
-        "date": "04/10/2024"
-      },
-      {
-        "title": "Strength Surge",
-        "days": "4 training days",
-        "user": "Slava",
-        "date": "04/10/2024"
-      },
-      {
-        "title": "Strength Surge",
-        "days": "4 training days",
-        "user": "Slava",
-        "date": "04/10/2024"
-      },
-      {
-        "title": "Strength Surge",
-        "days": "4 training days",
-        "user": "Slava",
-        "date": "04/10/2024"
-      },
-      {
-        "title": "Strength Surge",
-        "days": "4 training days",
-        "user": "Slava",
-        "date": "04/10/2024"
-      },
-      {
-        "title": "Strength Surge",
-        "days": "4 training days",
-        "user": "Slava",
-        "date": "04/10/2024"
-      },
-      {
-        "title": "Strength Surge",
-        "days": "4 training days",
-        "user": "Slava",
-        "date": "04/10/2024"
-      },
-      {
-        "title": "Strength Surge",
-        "days": "4 training days",
-        "user": "Slava",
-        "date": "04/10/2024"
-      },
-      {
-        "title": "Strength Surge",
-        "days": "4 training days",
-        "user": "Slava",
-        "date": "04/10/2024"
-      },
-      {
-        "title": "Strength Surge",
-        "days": "4 training days",
-        "user": "Slava",
-        "date": "04/10/2024"
-      },
-      {
-        "title": "Strength Surge",
-        "days": "4 training days",
-        "user": "Slava",
-        "date": "04/10/2024"
-      },
-      {
-        "title": "Strength Surge",
-        "days": "4 training days",
-        "user": "Slava",
-        "date": "04/10/2024"
-      }
-      
-    ],
-    "exercises": [
-      {
-        "name": "Bench Press",
-        "sets": 4,
-        "reps": 10,
-        "weight": "80kg"
-      },
-      {
-        "name": "Squats",
-        "sets": 5,
-        "reps": 12,
-        "weight": "100kg"
-      }
-    ]
+        {
+          "title": "Strength Surge",
+          "days": "4 training days",
+          "user": "Slava",
+          "date": "04/10/2024"
+        },
+        {
+          "title": "Endurance Boost",
+          "days": "5 training days",
+          "user": "Anna",
+          "date": "15/10/2024"
+        },
+        {
+          "title": "Power Up",
+          "days": "3 training days",
+          "user": "Mike",
+          "date": "20/10/2024"
+        },
+        {
+          "title": "Cardio Core",
+          "days": "6 training days",
+          "user": "Elena",
+          "date": "01/11/2024"
+        },
+        {
+          "title": "Flexibility Focus",
+          "days": "2 training days",
+          "user": "Tom",
+          "date": "05/11/2024"
+        },
+        {
+          "title": "Strength Builder",
+          "days": "4 training days",
+          "user": "Nina",
+          "date": "10/11/2024"
+        },
+        {
+          "title": "Ultimate Shred",
+          "days": "5 training days",
+          "user": "Alex",
+          "date": "12/11/2024"
+        },
+        {
+          "title": "Mass Gain",
+          "days": "3 training days",
+          "user": "Leo",
+          "date": "15/11/2024"
+        },
+        {
+          "title": "Speed Training",
+          "days": "4 training days",
+          "user": "Chris",
+          "date": "17/11/2024"
+        },
+        {
+          "title": "Core Crusher",
+          "days": "6 training days",
+          "user": "Sara",
+          "date": "20/11/2024"
+        },
+        {
+          "title": "HIIT Challenge",
+          "days": "5 training days",
+          "user": "Dmitry",
+          "date": "22/11/2024"
+        },
+        {
+          "title": "Strength & Stamina",
+          "days": "4 training days",
+          "user": "Olga",
+          "date": "25/11/2024"
+        },
+        {
+          "title": "Cardio Burst",
+          "days": "3 training days",
+          "user": "Ivan",
+          "date": "28/11/2024"
+        },
+        {
+          "title": "Strength 360",
+          "days": "5 training days",
+          "user": "Vera",
+          "date": "30/11/2024"
+        },
+        {
+          "title": "Agility Master",
+          "days": "2 training days",
+          "user": "Pavel",
+          "date": "02/12/2024"
+        }
+     
+      ] 
   }
   

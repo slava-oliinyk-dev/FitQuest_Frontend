@@ -1,0 +1,68 @@
+@import '../../styles/_variables'
+@import '../../styles/_mixins'
+@import '../../styles/_placeholders'
+
+.exercise
+    &__pagination
+        +pagination
+
+    &-modal__input
+        +modal-input
+
+    &-modal__title
+        font-size: $font-size-5
+        margin-bottom: 0.938rem
+
+    &-modal__inputs
+        @extend %flex-space-between
+        width: 31.25rem
+        margin-bottom: 1.25rem
+        margin-left: 2.7rem
+
+        &-input-label label
+            display: block
+            color: $color-gray
+            font-weight: $font-weight-normal
+
+    &-modal__inputs-input
+        width: 7.5rem
+        height: 2.688rem
+        border-radius: 0.313rem
+        background-color: $card-bg-color
+        outline: none
+        font-size: $font-size-6
+        font-weight: $font-weight-medium
+        color: $color-white
+        padding-left: 0.375rem
+        justify-content: center
+        align-items: center
+        text-align: center
+
+    &-modal__input::placeholder
+        font-size: $font-size-4
+        color: $color-gray
+
+    &-modal__input:focus::placeholder
+        color: transparent
+
+    &-modal__inputs-input::placeholder
+        font-size: $font-size-6
+        font-weight: $font-weight-medium
+        color: $color-gray
+        text-align: center
+        padding-right: 0.375rem
+
+    &-modal__inputs-input:focus::placeholder
+        color: transparent
+
+    &-modal__button-add
+        +modal-btn
+        &
+            @include interactive-item($color-orange-hover, $color-orange-active)
+
+    &-modal__button-cancel
+        +modal-btn
+        margin-right: 1.875rem
+        background-color: $card-bg-color
+        &
+            @include interactive-item($card-bg-color-hover, $card-bg-color-active)

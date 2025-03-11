@@ -1,6 +1,6 @@
 @import '../../styles/_variables'
 @import '../../styles/_mixins'
-    
+
 .program
     background-color: $content-bg-main
     display: flex
@@ -8,13 +8,15 @@
     width: 100%
     min-height: 100vh
 
+    &__pagination
+        +pagination
+
     &__spinner
         margin-top: 12.5rem
 
     &__main
         flex-grow: 1
         flex-direction: column
-        padding: 1.875rem 3.125rem 0rem 3.125rem
         width: 100%
         min-height: 100vh
 
@@ -24,7 +26,7 @@
 
     &__modal-input
         +modal-input
-        
+
     &__modal-input::placeholder
         font-size: $font-size-4
         color: $color-gray
@@ -38,8 +40,5 @@
 
     &__modal-btn-add
         +modal-btn
-        background-color: $color-orange
         &
             @include interactive-item($color-orange-hover, $color-orange-active)
-
-       

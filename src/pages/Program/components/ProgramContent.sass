@@ -1,33 +1,25 @@
 @import '../../../styles/_mixins'
 @import '../../../styles/_variables'
-
-%text-style
-  color: $color-gray
-  font-size: $font-size-2
-
-%flex-space-between
-  display: flex
-  justify-content: space-between
+@import '../../../styles/_placeholders'
 
 .program-content
-  +card-wrapper
+  &--with-wrapper
+    +card-wrapper
+  &__settings-menu
+    width: 170px
 
   &__settings-menu li:first-child
-    @include settings-menu-item(0.75rem, 0.5625rem) 
-
-  &__settings-menu li:nth-child(2)
-    @include settings-menu-item(0.5625rem, 0.5625rem)
+    @include settings-menu-item(0.75rem, 0.5625rem)
 
   &__settings-menu li:last-child
-    @include settings-menu-item(0.5625rem, 0.75rem) 
+    @include settings-menu-item(0.5625rem, 0.75rem)
 
   &__icon-button
-    background-color: transparent
-    border-style: none
+    @extend %button-style
 
   &__settings-icon
-    margin-right: 0.625rem 
-    width: 1.25rem 
+    margin-right: 0.625rem
+    width: 1.25rem
 
 .program-content__card
   +card
@@ -36,6 +28,11 @@
 
   &-header
     @extend %flex-space-between
+
+  &-title
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
 
   &-user,
   &-date
@@ -59,4 +56,12 @@
     @extend %text-style
     font-weight: $font-weight-normal
 
-  
+  &-title-button
+    background-color: $color-bg-input-edit
+    height: 2.156rem
+    width: 16.625rem
+    border-radius: 0.313rem
+    outline: none
+    color: $color-white
+    font-size: $font-size-4
+    font-weight: $font-weight-medium

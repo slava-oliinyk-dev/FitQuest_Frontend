@@ -2,41 +2,55 @@ import React, { useState } from 'react';
 import "./Sidebar.sass";
 import {
   gymIcon,
-  calendarIcon,
   exitIcon,
   helpIcon,
-  letterIcon,
   infoIcon,
-  progressIcon,
   homeIcon,
   communityIcon,
+  gymOrangeIcon,
+  exitOrangeIcon,
+  helpOrangeIcon,
+  infoOrangeIcon,
+  homeOrangeIcon,
+  communityOrangeIcon,
+  lockIcon,
+  lockOrange,
+  logo
 } from '../../assets/icons';
 
-function Sidebar() {
-  const [selectedMenuItemId, setSelectedMenuItemId] = useState(null);
+function Sidebar({ onSelectPrograms, selectedMenuItemId }) {
+
+  const handleProgramSelect = (id) => {
+    onSelectPrograms(id);
+  };
+
 
   const workspaceMenuItems = [
     {
       id: 1,
       icon: gymIcon,
+      activeIcon: gymOrangeIcon,
       label: 'My Workout Programs',
       iconStyle: { width: '1.5625rem', height: '1.5625rem' },
       iconClass: 'sidebar__icon--large',
     },
     {
       id: 2,
-      icon: calendarIcon,
+      icon: lockIcon,
+      activeIcon: lockOrange,
       label: 'Calendar',
     },
     {
       id: 3,
-      icon: progressIcon,
+      icon: lockIcon,
+      activeIcon: lockOrange,
       label: 'Progress',
       iconStyle: { width: '1.1875rem', height: '1.1875rem' },
     },
     {
       id: 4,
-      icon: letterIcon,
+      icon: lockIcon,
+      activeIcon: lockOrange,
       label: 'Program Inbox',
       iconStyle: { width: '1.1875rem', height: '1.1875rem' },
     },
@@ -46,17 +60,20 @@ function Sidebar() {
     {
       id: 5,
       icon: homeIcon,
+      activeIcon: homeOrangeIcon,
       label: 'Home',
     },
     {
       id: 6,
       icon: helpIcon,
+      activeIcon: helpOrangeIcon,
       label: 'About the App',
       iconClass: 'sidebar__icon--medium',
     },
     {
       id: 7,
       icon: communityIcon,
+      activeIcon: communityOrangeIcon,
       label: 'Contact & Social',
       iconStyle: { width: '1.4375rem', height: '1.4375rem' },
       iconClass: 'sidebar__icon--large',
@@ -64,11 +81,13 @@ function Sidebar() {
     {
       id: 8,
       icon: infoIcon,
+      activeIcon: infoOrangeIcon,
       label: 'Privacy & Legal',
     },
     {
       id: 9,
       icon: exitIcon,
+      activeIcon: exitOrangeIcon,
       label: 'Log Out',
       iconStyle: { width: '1.25rem', height: '1.25rem' },
       iconClass: 'sidebar__icon--medium',
@@ -79,23 +98,31 @@ function Sidebar() {
     items.map(item => (
       <li
         key={item.id}
-        className={`sidebar__menu-item ${selectedMenuItemId === item.id ? 'active' : ''}`}
-        onClick={() => setSelectedMenuItemId(item.id)}
+        className={
+          `sidebar__menu-item 
+          ${selectedMenuItemId === item.id ? 'active' : ''}`
+        }
+        onClick={() => onSelectPrograms(item.id)}
       >
         <span
           className={`sidebar__icon ${item.iconClass || ''}`}
           style={item.iconStyle}
         >
-          <img src={item.icon} alt={`${item.label} Icon`} />
+          <img
+            src={selectedMenuItemId === item.id ? item.activeIcon : item.icon}
+            alt={`${item.label} Icon`}
+          />
         </span>
         <span className="sidebar__text">{item.label}</span>
       </li>
     ))
   );
 
+
+
   return (
     <div className='sidebar'>
-      <div className='sidebar__app-name'>Fitness</div>
+      <div className='sidebar__app-name'><img src={logo} alt="" /></div>
 
       <div className='sidebar__section'>
         <div className="sidebar__section-title">WORKSPACE</div>

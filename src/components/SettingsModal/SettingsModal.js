@@ -1,12 +1,10 @@
 import { useLayoutEffect, useState } from 'react';
 import './SettingsModal.sass';
 
-function SettingsModal({ isVisible, onClose, children, targetRef }) {
+function SettingsModal({ isVisible, onClose, children, targetRef, offsetX = 0, offsetY = 0 }) {
   const [modalStyle, setModalStyle] = useState({});
 
   const updateModalPosition = () => {
-    const offsetX = -168;
-    const offsetY = -5; 
 
     if (targetRef) {
       const rect = targetRef.getBoundingClientRect();
@@ -31,12 +29,13 @@ function SettingsModal({ isVisible, onClose, children, targetRef }) {
     } else {
       setModalStyle(null);
     }
-  }, [isVisible, targetRef]);
+  }, [isVisible, targetRef, offsetX, offsetY]);
 
   if (!isVisible || modalStyle === null) return null;
 
   const handleOverlayClick = (e) => {
     if (e.target.classList.contains('settings-modal')) {
+      e.stopPropagation();
       onClose();
     }
   };

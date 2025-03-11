@@ -1,0 +1,56 @@
+@import '../../../styles/_mixins'
+@import '../../../styles/_variables'
+@import '../../../styles/_placeholders'
+
+.day-content
+  &--with-wrapper
+    +card-wrapper
+
+  &__settings-menu
+    width: 185px
+
+  &__settings-menu li:first-child
+    @include settings-menu-item(0.75rem, 0.5625rem)
+
+  &__settings-menu li:last-child
+    @include settings-menu-item(0.5625rem, 0.75rem)
+
+  &__icon-button
+    @extend %button-style
+
+  &__settings-icon
+    margin-right: 0.625rem
+    width: 1.25rem
+
+  &__edit-description-input
+    background-color: $color-bg-input-edit
+    border-radius: 0.313rem
+    outline: none
+    @extend %text-style
+    font-weight: $font-weight-normal
+    width: 90%
+    height: 45%
+
+.day-content__card
+  @extend %flex-space-between
+  flex-direction: column
+
+  +card($padding:0.875rem 0.4375rem 0.4rem 0.875rem)
+  &-title-button
+    @extend %flex-space-between
+  &-date
+    @extend %text-style
+  &-footer
+    @extend %flex-space-between
+    padding-right: 0.4375rem
+    align-items: center
+  &-description
+    @extend %text-style
+    font-weight: $font-weight-normal
+    width: 90%
+
+  &-button
+    @extend %button-style
+  &-exercises
+    font-weight: $font-weight-normal
+    color: $color-gray

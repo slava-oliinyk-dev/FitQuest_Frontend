@@ -1,14 +1,15 @@
 @import '../../styles/_variables'
-    
+
 .header
     display: flex
     justify-content: space-between
     margin-bottom: 2.5rem
     align-items: center
 
-    &__input-container 
+    &__input-container
         position: relative
         display: inline-block
+        z-index: 9
 
     &__input-field
         background-color: $card-bg-color
@@ -26,10 +27,10 @@
 
         &:focus::placeholder
             color: transparent
-        
+
     &__icon
         width: 1.8125rem
-        
+
     &__input-icon
         position: absolute
         top: 25%
@@ -39,4 +40,16 @@
     &__input-container:focus-within .header__input-icon
         display: none
 
-    
+    &__no-results
+        display: flex
+        position: absolute
+        background-color: $color-white
+        width: 21.5625rem
+        height: 2.1875rem
+        align-items: center
+        border-radius: 5px
+
+    &__no-results-icon
+        width: 20px
+        margin-left: 5px
+        margin-right: 10px

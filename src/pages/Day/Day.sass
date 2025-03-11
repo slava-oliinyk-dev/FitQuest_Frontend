@@ -1,0 +1,34 @@
+@import '../../styles/_variables'
+@import '../../styles/_mixins'
+
+.day
+    position: relative
+
+    &__pagination
+        +pagination
+
+    &__spinner
+        margin-top: 12.5rem
+
+    &__modal-title
+        font-size: 1.75rem
+        margin-bottom: 0.938rem
+
+    &__modal-input
+        +modal-input
+
+    &__modal-input::placeholder
+        font-size: $font-size-4
+        color: $color-gray
+
+    &__modal-btn-cancel
+        +modal-btn
+        margin-right: 1.875rem
+        background-color: $card-bg-color
+        &
+            @include interactive-item($card-bg-color-hover, $card-bg-color-active)
+
+    &__modal-btn-add
+        +modal-btn
+        &
+            @include interactive-item($color-orange-hover, $color-orange-active)

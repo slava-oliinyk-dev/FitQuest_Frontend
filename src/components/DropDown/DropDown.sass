@@ -1,0 +1,37 @@
+@import '../../styles/_mixins'
+@import '../../styles/_variables'
+@import '../../styles/_placeholders'
+
+.dropdown
+    width: 31.25rem
+    height: 2.688rem
+    border-radius: 0.313rem
+    background-color: $color-dropdown-item
+    font-size: $font-size-6
+    font-weight: $font-weight-medium
+    color: $color-white
+    position: relative
+    display: inline-block
+    text-align: left
+    margin-bottom: 1rem
+
+.dropdown-selected
+    padding-left: 0.625rem
+    padding-top: 0.438rem
+
+.dropdown-list
+    position: absolute
+    z-index: 1000
+    width: 31.25rem
+
+.dropdown-item
+    background-color: $color-dropdown-item
+    padding-left: 0.625rem
+    padding-top: 0.5rem
+    padding-bottom: 0.25rem
+
+.dropdown-item:hover
+    background-color: $color-dropdown-hover
+
+.dropdown-item:active
+    background-color: $color-dropdown-active

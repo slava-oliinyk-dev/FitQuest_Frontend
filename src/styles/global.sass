@@ -1,16 +1,14 @@
 @import 'variables'
 @import 'mixins'
 
-html 
+html
   font-size: 100%
-
 
 h1, h2, h3, h4, h5, figure, p, ol, ul, button, div, span
   margin: 0
   font-family: "Roboto", sans-serif
   font-weight: $font-weight-medium
   font-style: normal
-
 
 img
   display: block
@@ -19,9 +17,16 @@ img
 li:hover, a:hover, button:hover
   cursor: pointer
 
-h3 
-  font-size: 23px
+h3
+  font-size: 1.438rem
 
-body 
+body
+  margin: 0
+  overflow: hidden
   overscroll-behavior: none
-  background-color: #1e1e1e
+  background-color: $content-bg-main
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button
+  -webkit-appearance: none
+  margin: 0

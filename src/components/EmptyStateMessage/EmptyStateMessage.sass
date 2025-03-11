@@ -1,0 +1,15 @@
+@import '../../styles/_variables'
+@import '../../styles/_mixins'
+
+.empty-state
+    text-align: center
+    &__message
+        font-size: 1.563rem
+        color: $color-white
+        margin-bottom: 0.538rem
+        margin-top: 15%
+
+    &__button
+        +modal-btn
+        &
+            @include interactive-item($color-orange-hover, $color-orange-active)
