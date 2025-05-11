@@ -1,5 +1,6 @@
 import "./Header.sass";
-import { profileIcon, searchIcon } from '../../assets/icons';
+import "./HeaderMedia.sass";
+import { logoutIcon, searchIcon } from '../../assets/icons';
 import { useState } from "react";
 
 function Header() {
@@ -7,13 +8,15 @@ function Header() {
     const [showNoResults, setShowNoResults] = useState(false);
 
     const handleChange = (e) => {
-        setInputValue(e.target.value);
-        if (showNoResults) setShowNoResults(false);
+        const value = e.target.value;
+        setInputValue(value);
+        setShowNoResults(value.trim() !== "");
     };
 
     const handleBlur = () => {
         setInputValue("");
         setShowNoResults(false);
+
     };
 
     const handleKeyDown = (e) => {
@@ -39,12 +42,10 @@ function Header() {
                     onKeyDown={handleKeyDown}
                 />
                 {showNoResults && (
-                    <div className="header__no-results"><img className="header__no-results-icon" src={searchIcon} alt="Search Icon" /><p>No results found.</p></div>
+                    <div className="header__no-results"><img className="header__no-results-icon" src={searchIcon} alt="Search Icon" /><p className="header__no-results-result">No results found</p></div>
                 )}
             </div>
-            <a href="#">
-                <img className="header__icon" src={profileIcon} alt="Profile Icon" />
-            </a>
+
         </div>
     );
 }

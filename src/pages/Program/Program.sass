@@ -2,11 +2,11 @@
 @import '../../styles/_mixins'
 
 .program
-    background-color: $content-bg-main
-    display: flex
-    position: relative
-    width: 100%
-    min-height: 100vh
+    overflow-y: auto
+    &__main
+        display: flex
+        flex-direction: column
+        height: calc(100vh - 6rem)
 
     &__pagination
         +pagination
@@ -14,22 +14,24 @@
     &__spinner
         margin-top: 12.5rem
 
-    &__main
-        flex-grow: 1
-        flex-direction: column
-        width: 100%
-        min-height: 100vh
+    &__modal-error
+        color: $color-error
+        font-size: $font-size-14
 
     &__modal-title
-        font-size: 1.75rem
-        margin-bottom: 0.938rem
+        font-size: $font-size-20
+        margin-bottom: 0.8rem
 
     &__modal-input
         +modal-input
+        margin-bottom: 0.625rem
 
     &__modal-input::placeholder
-        font-size: $font-size-4
+        font-size: $font-size-3
         color: $color-gray
+
+    &__modal-btn
+        margin-top: 0.625rem
 
     &__modal-btn-cancel
         +modal-btn

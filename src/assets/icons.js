@@ -29,6 +29,11 @@ import notesIcon from './icons/notes.svg'
 import lockIcon from './icons/lock.svg'
 import lockOrange from './icons/lockOrange.svg'
 import logo from './icons/FitQuest.svg'
+import arrowUp from './icons/arrowUp.svg'
+import arrowDown from './icons/arrowDown.svg'
+import google from './icons/google.svg'
+import facebook from './icons/facebook.svg'
+import logoutIcon from './icons/logout.svg'
 
 
 export {
@@ -62,5 +67,10 @@ export {
     notesIcon,
     lockIcon,
     lockOrange,
-    logo
+    logo,
+    arrowUp,
+    arrowDown,
+    google,
+    facebook,
+    logoutIcon
 }

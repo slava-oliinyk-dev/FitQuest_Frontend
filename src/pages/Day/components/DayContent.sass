@@ -7,7 +7,8 @@
     +card-wrapper
 
   &__settings-menu
-    width: 185px
+    width: 10rem
+    font-size: $font-size-14
 
   &__settings-menu li:first-child
     @include settings-menu-item(0.75rem, 0.5625rem)
@@ -19,8 +20,8 @@
     @extend %button-style
 
   &__settings-icon
-    margin-right: 0.625rem
-    width: 1.25rem
+    margin-right: 0.7rem
+    width: 1rem
 
   &__edit-description-input
     background-color: $color-bg-input-edit
@@ -35,11 +36,15 @@
   @extend %flex-space-between
   flex-direction: column
 
-  +card($padding:0.875rem 0.4375rem 0.4rem 0.875rem)
+  +card
+  &-title
+    font-size: $font-size-20
   &-title-button
     @extend %flex-space-between
   &-date
     @extend %text-style
+    font-weight: $font-weight-medium
+    font-size: $font-size-14
   &-footer
     @extend %flex-space-between
     padding-right: 0.4375rem
@@ -48,9 +53,11 @@
     @extend %text-style
     font-weight: $font-weight-normal
     width: 90%
+    font-size: $font-size-14
 
   &-button
     @extend %button-style
   &-exercises
     font-weight: $font-weight-normal
     color: $color-gray
+    font-size: $font-size-14

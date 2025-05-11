@@ -2,13 +2,19 @@
 @import '../../styles/_mixins'
 
 .day
-    position: relative
-
+    overflow-y: auto
+    &__main
+        display: flex
+        flex-direction: column
+        height: calc(100vh - 6rem)
     &__pagination
         +pagination
-
     &__spinner
         margin-top: 12.5rem
+
+    &__modal-error
+        color: $color-error
+        font-size: $font-size-14
 
     &__modal-title
         font-size: 1.75rem
@@ -16,10 +22,14 @@
 
     &__modal-input
         +modal-input
+        margin-bottom: 0.625rem
 
     &__modal-input::placeholder
         font-size: $font-size-4
         color: $color-gray
+
+    &__modal-btn
+        margin-top: 0.625rem
 
     &__modal-btn-cancel
         +modal-btn

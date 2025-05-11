@@ -1,0 +1,55 @@
+@import '../../../styles/_mixins-landing'
+@import '../../../styles/_variables-landing'
+@import '../../../styles/_placeholders'
+
+.about
+    @include main-style
+    &__plan-title
+        max-width: 33.4rem
+        @include title-style
+        &-text
+            display: block
+            text-align: right
+    &__plan-num
+        margin-left: auto
+        margin-right: 8rem
+        @include num-style
+    &__plan-content
+        @include flex-center()
+    &__plan-info
+        margin-left: 2.5rem
+        @include info-style
+    &__plan-img
+        margin-left: 3.5rem
+        max-width: $img-style
+    &__visual-num
+        margin-right: auto
+        margin-left: 11rem
+        @include num-style
+    &__visual-content
+        @extend %flex-space-right
+        @include flex-center()
+    &__visual-title
+        @include title-style
+        text-align: right
+        margin-bottom: 2.188rem
+    &__visual-info
+        margin-right: 2.5rem
+        @include info-style
+    &__visual-img
+        max-width: $img-style
+
+    &__calendar-num
+        margin-left: auto
+        margin-right: 11rem
+        @include num-style
+    &__calendar-content
+        @include flex-center(0)
+    &__calendar-title
+        @include title-style
+        margin-bottom: 2.188rem
+    &__calendar-info
+        margin-right: 2.5rem
+        @include info-style
+    &__calendar-img
+        max-width: $img-style

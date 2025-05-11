@@ -1,0 +1,170 @@
+@import '../../../styles/_mixins-landing'
+@import '../../../styles/_variables-landing'
+@import '../../../styles/_placeholders'
+
+@media (max-width: 1200px)
+    .about
+        padding: 0 1rem
+        &__plan-num,
+        &__calendar-num
+            margin-right: 6rem
+        &__visual-num
+            margin-left: 6rem
+@media (max-width: 1000px)
+    .about
+        &__plan-num,
+        &__calendar-num
+            margin-right: 0
+        &__visual-num
+            margin-left: 0
+@media (max-width: 850px)
+    .about
+        &__plan-num,
+        &__visual-num,
+        &__calendar-num
+            font-size: $font-size-120
+        &__plan-info
+            font-size: $font-size-14
+            margin-left: 0.938rem
+        &__visual-info
+            font-size: $font-size-14
+            margin-right: 0.625rem
+        &__calendar-info
+            font-size: $font-size-14
+            margin-left: 0.938rem
+        &__plan-img,
+        &__visual-img,
+        &__calendar-img
+            max-width: 10rem
+            margin-left: 1rem
+@media (max-width: 700px)
+    .about
+        margin-top: 3.125rem
+        &__plan-title
+            font-size: $font-size-25
+            max-width: 27.813rem
+        &__visual-title,
+        &__calendar-title
+            font-size: $font-size-25
+            margin-bottom: 1.25rem
+        &__plan-num,
+        &__visual-num,
+        &__calendar-num
+            font-size: $font-size-100
+        &__plan-info,
+        &__visual-info,
+        &__calendar-info
+            font-size: $font-size-13
+            margin-left: 0.625rem
+        &__plan-img,
+        &__calendar-img,
+        &__visual-img
+            max-width: 9rem
+@media (max-width: 630px)
+    .about
+        margin-top: 1.875rem
+        &__plan-title
+            font-size: $font-size-20
+            max-width: 22.375rem
+        &__calendar-title,
+        &__visual-title
+            font-size: $font-size-20
+        &__plan-num,
+        &__visual-num,
+        &__calendar-num
+            font-size: $font-size-80
+        &__plan-info,
+        &__visual-info,
+        &__calendar-info
+            font-size: 0.719rem
+            margin-left: 0.313rem
+        &__plan-img,
+        &__visual-img,
+        &__calendar-img
+            max-width: 8rem
+@media (max-width: 550px)
+    .about
+        padding: 0 1rem
+        &__plan-title
+            margin-bottom: 0.313rem
+            max-width: 22.25rem
+            font-size: $font-size-20
+        &__visual-title
+            margin-bottom: 0.313rem
+            max-width: 22.25rem
+            font-size: $font-size-20
+            text-align: left
+        &__calendar-title
+            margin-bottom: 0.313rem
+            font-size: $font-size-20
+        &__plan-content,
+        &__visual-content,
+        &__calendar-content
+            +flex-space-wrap
+        &__plan-num,
+        &__visual-num,
+        &__calendar-num
+            order: 1
+            flex: 0 0 auto
+            font-size: $font-size-50
+            margin: 0
+        &__plan-info,
+        &__visual-info,
+        &__calendar-info
+            order: 2
+            flex: 1 1 auto
+            font-size: $font-size-15
+            margin: 0
+            max-width: 18.75rem
+    picture
+        +about-picture
+@media (max-width: 440px)
+    .about
+        &__plan-num,
+        &__visual-num,
+        &__calendar-num
+            font-size: $font-size-40
+        &__plan-info,
+        &__visual-info,
+        &__calendar-info
+            max-width: 17.5rem
+            font-size: $font-size-13
+@media (max-width: 400px)
+    .about
+        &__plan-title
+        &__calendar-title,
+        &__visual-title
+            max-width: 17.813rem
+            font-size: $font-size-16
+        &__plan-info,
+        &__visual-info,
+        &__calendar-info
+            max-width: 15rem
+@media (max-width: 360px)
+    .about
+        &__plan-title,
+        &__visual-title,
+        &__calendar-title
+            max-width: 15.625rem
+            font-size: $font-size-14
+        &__plan-info,
+        &__visual-info,
+        &__calendar-info
+            max-width: 13.75rem
+@media (max-width: 340px)
+    .about
+        &__plan-info,
+        &__visual-info,
+        &__calendar-info
+            max-width: 10.625rem
+@media (max-width: 290px)
+    .about
+        &__plan-title,
+        &__visual-title,
+        &__calendar-title
+            max-width: 13.438rem
+            font-size: $font-size-12
+        &__plan-info,
+        &__visual-info,
+        &__calendar-info
+            max-width: 7.5rem

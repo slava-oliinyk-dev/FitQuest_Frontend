@@ -8,10 +8,11 @@
     &__card
         +card
     &__settings-icon
-        margin-right: 0.625rem
-        width: 1.25rem
+        margin-right: 0.7rem
+        width: 1rem
     &__settings-menu
-        width: 10.9375rem
+        width: 10rem
+        font-size: $font-size-14
     &__settings-menu li:first-child
         @include settings-menu-item(0.75rem, 0.5625rem)
     &__settings-menu li:last-child
@@ -22,8 +23,8 @@
     &__inputs
         @extend %flex-space-between
         text-align: center
+
         &-input::placeholder
-            font-size: $font-size-6
             font-weight: $font-weight-medium
             color: $color-gray
             text-align: center
@@ -35,56 +36,58 @@
             align-items: center
             text-align: center
         &-input-label input
-            width: 5.5rem
-            height: 2rem
+            width: 5.2rem
+            height: 1.8rem
             border-radius: 0.313rem
             background-color: $color-input-back
             outline: none
-            font-size: $font-size-6
             font-weight: $font-weight-medium
             color: $color-white
         &-input-label label
             display: block
             color: $color-gray
             font-weight: $font-weight-normal
+            font-size: $font-size-14
 
     &__card-button
         @extend %button-style
         height: 1.875rem
+        padding-right: 0rem
     &__card-title-button
         height: 4.375rem
     &__card-title
         line-height: 1.2
-        max-width: 15.625rem
-        font-size: 1.25rem
-        hyphens: auto
-        overflow-wrap: break-word
+        max-width: 13rem
+        font-size: $font-size-3
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+        padding-top: 5px
 
     &__edit-title-input
         background-color: $color-bg-input-edit
         border-radius: 0.313rem
         outline: none
         font-weight: $font-weight-normal
-        width: 80%
+        width: 100%
         height: 50%
         color: white
-        font-wight: 600
+
     &__inputs-div
-        width: 5.5rem
-        height: 2rem
+        width: 5.2rem
+        height: 1.8rem
         border-radius: 0.313rem
         background-color: $color-input-back
-        font-size: $font-size-6
         font-weight: $font-weight-medium
         color: $color-white
-        padding-top: 0.121875rem
+        padding-top: 0.1rem
 
     &__notes-modal-title
-        margin-bottom: 0.9375rem
+        margin-bottom: 1rem
 
     &__notes-modal-textarea
         width: 96%
-        height: 31.25rem
+        height: 25rem
         border-radius: 0.3125rem
         background-color: $card-bg-color
         border-style: none
@@ -93,16 +96,16 @@
         padding-left: 0.625rem
         outline: none
         padding-top: 0.625rem
-        font-size: 1.125rem
+        font-size: $font-size-14
 
     &__notes-modal-button-save
         +modal-btn
         &
         @include interactive-item($color-orange-hover, $color-orange-active)
 
-.exercise-content__notes-modal-button-cancel
-    +modal-btn
-    margin-right: 1.875rem
-    background-color: $card-bg-color
-    &
+    &__notes-modal-button-cancel
+        +modal-btn
+        margin-right: 1.875rem
+        background-color: $card-bg-color
+        &
         @include interactive-item($card-bg-color-hover, $card-bg-color-active)

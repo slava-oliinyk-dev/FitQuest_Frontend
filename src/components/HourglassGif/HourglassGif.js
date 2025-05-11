@@ -1,8 +1,8 @@
-import hourglass from '../../assets/gif/hourglass.gif';
+import gears from '../../assets/gif/gears.gif';
 
 
 const HourglassGif = () => {
-    return <img src={hourglass} alt="Loading..." />;
+    return <img src={gears} alt="Loading..." />;
 };
 
 export default HourglassGif;

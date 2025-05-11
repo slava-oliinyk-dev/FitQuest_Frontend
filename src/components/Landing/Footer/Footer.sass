@@ -1,0 +1,21 @@
+@import '../../../styles/_mixins-landing'
+@import '../../../styles/_variables-landing'
+@import '../../../styles/_placeholders'
+
+.footer
+    background-color: $color-back
+    &__wrapper
+        @extend %flex-space-between
+        align-items: center
+        @include main-style
+        padding-bottom: 1.25rem
+        padding-top: 1.25rem
+        margin-top: 0px
+    &__nav
+        display: flex
+        gap: 2.5rem
+        font-size: $font-size-14
+    &__logo
+        @extend %logo
+    &__privacy
+        font-size: $font-size-14

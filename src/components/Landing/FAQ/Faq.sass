@@ -1,0 +1,40 @@
+@import '../../../styles/_mixins-landing'
+@import '../../../styles/_variables-landing'
+@import '../../../styles/_placeholders'
+
+.faq
+    @include main-style
+
+    &__item
+        background-color: $color-orange
+        margin-bottom: 1.875rem
+        border-radius: 0.188rem
+        align-items: center
+        padding: 0.838rem 3rem
+
+    &__question
+        @extend %flex-space-between
+        align-items: center
+
+    &__question-num
+        color: $color-black
+        font-size: $font-size-20
+        font-weight: $font-weight-600
+    &__answer
+        color: $color-black
+        font-size: $font-size-18
+        font-weight: $font-weight-400
+        overflow: hidden
+        max-height: 0
+        opacity: 0
+        transition: max-height 0.4s ease, opacity 0.4s ease
+
+    &__item.active &__answer
+        max-height: 12.5rem
+        opacity: 1
+
+    &__num
+        color: $color-black
+        font-size: $font-size-20
+        font-weight: $font-weight-600
+        margin-right: 0.938rem

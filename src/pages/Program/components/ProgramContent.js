@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import "./ProgramContent.sass"
-import "../Program-media.sass"
+import "./ProgramContentMedia.sass"
 import { settingsIcon, profileIcon, editIcon, shareIcon, deleteIcon, settingsOrangeIcon } from '../../../assets/icons'
 import SettingsModal from "../../../components/SettingsModal/SettingsModal";
 import EmptyStateMessage from '../../../components/EmptyStateMessage/EmptyStateMessage';
@@ -36,7 +36,7 @@ function ProgramContent({ page, cardsPerPage, cards, setCards, onProgramCardClic
   const handleDeleteProgram = async () => {
     if (!activeCardId) return;
     try {
-      await apiRequest(`/program/${activeCardId}`, 'DELETE');
+      await apiRequest(`/program/${activeCardId}`, 'DELETE', null, { withCredentials: true });
       setCards((prevCards) => prevCards.filter((card) => card.id !== activeCardId));
       setActiveCardId(null);
       setModalVisible(false);
@@ -48,7 +48,7 @@ function ProgramContent({ page, cardsPerPage, cards, setCards, onProgramCardClic
   const saveTitleChange = async (card, newTitle) => {
     if (newTitle !== card.title) {
       try {
-        await apiRequest(`/program/${card.id}`, 'PUT', { title: newTitle });
+        await apiRequest(`/program/${card.id}`, 'PUT', { title: newTitle }, { withCredentials: true });
         setCards((prevCards) =>
           prevCards.map((c) =>
             c.id === card.id ? { ...c, title: newTitle } : c
@@ -107,7 +107,7 @@ function ProgramContent({ page, cardsPerPage, cards, setCards, onProgramCardClic
                   />
                 </button>
                 {activeCardId === card.id && (
-                  <SettingsModal isVisible={true} onClose={closeModal} targetRef={buttonRefs.current[card.id]} offsetX={-155}
+                  <SettingsModal isVisible={true} onClose={closeModal} targetRef={buttonRefs.current[card.id]} offsetX={-145}
                     offsetY={-6}>
                     <div className="program-content__SettingsModal">
                       <ul className="program-content__settings-menu">
@@ -122,20 +122,15 @@ function ProgramContent({ page, cardsPerPage, cards, setCards, onProgramCardClic
                 : 'No training days'}</p>
               <div className="program-content__card-footer">
                 <div className="program-content__card-user-container">
-                  <img
-                    className="program-content__card-profile-icon"
-                    src={profileIcon}
-                    alt="Profile Icon"
-                  />
                   <span className="program-content__card-user">{card.userName}</span>
                 </div>
                 <span className="program-content__card-date">{card.creationDate}</span>
               </div>
             </div>
 
-          )))}
-    </div>
-
+          )))
+      }
+    </div >
   );
 }
 

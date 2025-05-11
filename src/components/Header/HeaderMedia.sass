@@ -1,0 +1,43 @@
+@import '../../styles/_variables'
+
+@media (max-width: 1080px)
+    .header
+        padding-left: 2rem
+@media (max-width: 1000px)
+    .header
+        padding-left: 4rem
+@media (max-width: 840px)
+    .header
+        padding-left: 2rem
+@media (max-width: 760px)
+    .header
+        margin-bottom: 1rem
+        padding-left: 4rem
+@media (max-width: 500px)
+    .header
+        justify-content: right
+
+@media (max-width: 430px)
+    .header
+        padding-left: 3rem
+        &__input-field
+            width: 14rem
+            &::placeholder
+                padding-left: 6rem
+        &__input-icon
+            margin-left: 5rem
+        &__no-results
+            width: 14rem
+@media (max-width: 340px)
+    .header
+        padding-left: 2rem
+        &__input-field
+            width: 12rem
+            &::placeholder
+                padding-left: 5rem
+                font-size: 13px
+        &__input-icon
+            margin-left: 4rem
+
+        &__no-results
+            width: 12rem

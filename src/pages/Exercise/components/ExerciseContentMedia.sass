@@ -1,0 +1,140 @@
+@import '../../../styles/_variables'
+@media (min-width: 1820px)
+    .exercise-content
+        &--with-wrapper
+            grid-template-columns: repeat(5, 18rem)
+            grid-template-rows: repeat(4, 8rem)
+@media (min-width: 2120px)
+    .exercise-content__card
+        width: 100%
+    .exercise-content
+        &--with-wrapper
+            grid-template-columns: repeat(6, 18rem)
+            grid-template-rows: repeat(4, 8rem)
+@media (min-width: 1580px) and (max-width: 1819px)
+    .exercise-content
+        &--with-wrapper
+            grid-template-columns: repeat(4, 18rem)
+            grid-template-rows: repeat(4, 8rem)
+
+@media (max-width: 1215px)
+    .exercise-content
+        &--with-wrapper
+            grid-template-columns: repeat(3, 16rem)
+            grid-template-rows: repeat(3, 8rem)
+        &__card
+            width: 100%
+            &-days
+                font-size: $font-size-13
+            &-title,
+            &-title-button
+                font-size: $font-size-18
+        &__inputs-div
+            width: 4.5rem
+
+@media (max-width: 1080px)
+    .exercise-content
+        &--with-wrapper
+            grid-template-columns: repeat(3, 18rem)
+            grid-template-rows: repeat(3, 8rem)
+        &__card
+            &-days
+                font-size: $font-size-14
+            &-title
+                font-size: $font-size-18
+            &-title-button
+                font-size: $font-size-20
+        &__inputs-div
+            width: 5.2rem
+        &__notes-modal-title
+            margin-bottom: 0.5rem
+            font-size: 1.7rem
+        &__notes-modal-textarea
+            width: 100%
+            margin-bottom: 0.5rem
+            padding-left: 0.5rem
+            padding-top: 0.5rem
+            font-size: 14px
+
+@media (max-width: 940px)
+    .exercise-content
+        &--with-wrapper
+            grid-template-columns: repeat(3, 16rem)
+        &__card
+            width: 100%
+            &-days
+                font-size: $font-size-13
+            &-title,
+            &-title-button
+                font-size: $font-size-18
+        &__inputs-div
+            width: 4.5rem
+
+@media (max-width: 840px)
+    .exercise-content
+        &--with-wrapper
+            grid-template-columns: repeat(2, 20rem)
+        &__card
+            &-days
+                font-size: $font-size-14
+            &-title-button
+                font-size: $font-size-20
+        &__inputs-div
+            width: 5.2rem
+
+@media (max-width: 700px)
+    .exercise-content
+        &--with-wrapper
+            grid-template-columns: repeat(2, 18rem)
+@media (max-width: 630px)
+    .exercise-content
+        &--with-wrapper
+            grid-template-columns: repeat(2, 17rem)
+
+@media (max-width: 603px)
+    .exercise-content
+        &--with-wrapper
+            justify-content: center
+            grid-template-columns: repeat(1, 25rem)
+        &__inputs-div
+            width: 6.5rem
+@media (max-width: 436px)
+    .exercise-content
+        &--with-wrapper
+            grid-template-columns: repeat(1, 23rem)
+        &__notes-modal-title
+            margin-bottom: 0.2rem
+            font-size: 1.4rem
+
+@media (max-width: 400px)
+    .exercise-content
+        &--with-wrapper
+            grid-template-columns: repeat(1, 20rem)
+        &__inputs-div
+            width: 5.2rem
+@media (max-width: 365px)
+    .exercise-content
+        &--with-wrapper
+            grid-template-columns: repeat(1, 18rem)
+@media (max-width: 325px)
+    .exercise-content
+        &--with-wrapper
+            grid-template-columns: repeat(1, 16rem)
+        &__card
+            &-title,
+            &-title-button
+                font-size: $font-size-18
+        &__inputs-div
+            width: 4.5rem
+
+@media (max-width: 295px)
+    .exercise-content
+        &--with-wrapper
+            grid-template-columns: repeat(1, 14rem)
+        &__card
+            width: 100%
+            &-title,
+            &-title-button
+                font-size: $font-size-16
+        &__inputs-div
+            width: 4rem

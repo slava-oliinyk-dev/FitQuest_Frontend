@@ -2,31 +2,40 @@
 @import "../../styles/_mixins"
 
 .sidebar
+    &__burger,
+    &__close,
+    &__overlay
+        display: none
+        background: none
+        border: none
+        cursor: pointer
+
+.sidebar
     background-color: $card-bg-color
     color: $color-white
-    width: 18.75rem
+    width: 15.75rem
     flex-shrink: 0
     height: 100vh
-    padding-top: 1.875rem
+    padding-top: 2rem
     padding-bottom: 1.875rem
     padding-left: 1.4375rem
     padding-right: 1.4375rem
     overflow-y: auto
 
     &__app-name
-        margin-bottom: 3.75rem
+        margin-bottom: 3rem
 
     &__section-title
-        font-size: $font-size-1
+        font-size: $font-size-11
         color: $color-gray
         margin-bottom: 1.25rem
 
     &__menu-item
-        font-size: $font-size-3
+        font-size: $font-size-14
         display: flex
         align-items: center
-        padding-top: 0.4375rem
-        padding-bottom: 0.4375rem
+        padding-top: 0.25rem
+        padding-bottom: 0.2rem
         margin-bottom: 1rem
         padding-left: 0.4375rem
         padding-right: 0.4375rem
