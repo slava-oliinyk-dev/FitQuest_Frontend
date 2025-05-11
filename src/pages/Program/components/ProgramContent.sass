@@ -6,7 +6,8 @@
   &--with-wrapper
     +card-wrapper
   &__settings-menu
-    width: 170px
+    width: 10rem
+    font-size: $font-size-14
 
   &__settings-menu li:first-child
     @include settings-menu-item(0.75rem, 0.5625rem)
@@ -18,8 +19,8 @@
     @extend %button-style
 
   &__settings-icon
-    margin-right: 0.625rem
-    width: 1.25rem
+    margin-right: 0.7rem
+    width: 1rem
 
 .program-content__card
   +card
@@ -33,11 +34,13 @@
     white-space: nowrap
     overflow: hidden
     text-overflow: ellipsis
+    font-size: $font-size-20
 
   &-user,
   &-date
     @extend %text-style
     font-weight: $font-weight-medium
+    font-size: $font-size-14
 
   &-user-container
     display: flex
@@ -46,7 +49,7 @@
   &-footer
     @extend %flex-space-between
     padding-right: 0.4375rem
-    margin-top: 3rem
+    margin-top: 2.8rem
 
   &-profile-icon
     width: 1.25rem
@@ -55,11 +58,12 @@
   &-days
     @extend %text-style
     font-weight: $font-weight-normal
+    font-size: $font-size-14
 
   &-title-button
     background-color: $color-bg-input-edit
-    height: 2.156rem
-    width: 16.625rem
+    height: 2rem
+    width: 16rem
     border-radius: 0.313rem
     outline: none
     color: $color-white

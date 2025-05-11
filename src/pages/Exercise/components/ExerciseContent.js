@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { settingsIcon, settingsOrangeIcon, editIcon, deleteIcon, notesIcon } from '../../../assets/icons'
 import './ExerciseContent.sass'
+import './ExerciseContentMedia.sass'
 import EmptyStateMessage from '../../../components/EmptyStateMessage/EmptyStateMessage';
 import SettingsModal from '../../../components/SettingsModal/SettingsModal';
 import { apiRequest } from '../../../api/apiRequest';
@@ -47,14 +48,22 @@ function ExerciseContent({ page, exercisesPerPage, onDayCardId, setExercises, ex
         if (["e", "E", "+", "-"].includes(e.key)) {
             e.preventDefault();
         }
+
     };
 
     const handleNumberInputChange = (e) => {
-        let value = e.target.value;
-        if (value.length > 5) {
-            value = value.slice(0, 5);
+
+        let val = e.target.value.replace(/\D/g, '');
+
+        if (val.length > 1 && val.startsWith('0')) {
+            val = val.replace(/^0+/, '');
         }
-        setCurrentParametersValue(value);
+
+        if (val.length > 5) {
+            val = val.slice(0, 5);
+        }
+
+        setCurrentParametersValue(val);
     };
 
     const handleFocus = () => {
@@ -88,7 +97,7 @@ function ExerciseContent({ page, exercisesPerPage, onDayCardId, setExercises, ex
 
     const handleNotesBlur = async (exercise, note) => {
         try {
-            await apiRequest(`/exercise/${onDayCardId}/note/${exercise.id}`, 'PUT', { note: note })
+            await apiRequest(`/exercise/${onDayCardId}/note/${exercise.id}`, 'PUT', { note: note }, { withCredentials: true })
             setCurrentNotesValue('')
             setExercises((prevExercises) =>
                 prevExercises.map((c) => (c.id === exercise.id ? { ...c, note: note } : c))
@@ -111,7 +120,7 @@ function ExerciseContent({ page, exercisesPerPage, onDayCardId, setExercises, ex
     const handleDeleteExercise = async () => {
         if (!activeCardId) return
         try {
-            await apiRequest(`/exercise/${onDayCardId}/exercises/${activeCardId}`, 'DELETE')
+            await apiRequest(`/exercise/${onDayCardId}/exercises/${activeCardId}`, 'DELETE', null, { withCredentials: true })
             setExercises((prevExercises) => prevExercises.filter((exercise) => exercise.id !== activeCardId));
             setActiveCardId(null);
             setModalVisible(false)
@@ -133,7 +142,7 @@ function ExerciseContent({ page, exercisesPerPage, onDayCardId, setExercises, ex
         console.log('Sending payload:', payload);
 
         try {
-            await apiRequest(`/exercise/${onDayCardId}/exercises/${exercise.id}`, 'PUT', payload);
+            await apiRequest(`/exercise/${onDayCardId}/exercises/${exercise.id}`, 'PUT', payload, { withCredentials: true });
             setExercises((prevExercises) =>
                 prevExercises.map((c) => (c.id === exercise.id ? { ...c, name: newTitle } : c))
             );
@@ -163,7 +172,7 @@ function ExerciseContent({ page, exercisesPerPage, onDayCardId, setExercises, ex
         console.log('Sending payload:', payload);
 
         try {
-            await apiRequest(`/exercise/${onDayCardId}/exercises/${exercise.id}`, 'PUT', payload);
+            await apiRequest(`/exercise/${onDayCardId}/exercises/${exercise.id}`, 'PUT', payload, { withCredentials: true });
             setExercises((prevExercises) =>
                 prevExercises.map((ex) => (ex.id === exercise.id ? { ...ex, [field]: newValue } : ex))
             );
@@ -192,7 +201,7 @@ function ExerciseContent({ page, exercisesPerPage, onDayCardId, setExercises, ex
                                             onChange={(e) => setEditingExerciseTitle(e.target.value)}
                                             onClick={(e) => e.stopPropagation()}
                                             onBlur={(e) => handleTitleBlur(exercise)}
-                                            maxLength={40}
+                                            maxLength={25}
                                             autoFocus
                                         />
                                         :
@@ -233,7 +242,7 @@ function ExerciseContent({ page, exercisesPerPage, onDayCardId, setExercises, ex
                                         <img src={activeCardId === exercise.id ? settingsOrangeIcon : settingsIcon} alt="" className="exercise-content__icon-button" />
                                     </button>
                                     {activeCardId === exercise.id && buttonRefs.current[exercise.id] && (
-                                        <SettingsModal isVisible={true} onClose={closeModal} targetRef={buttonRefs.current[exercise.id]} offsetX={-160}
+                                        <SettingsModal isVisible={true} onClose={closeModal} targetRef={buttonRefs.current[exercise.id]} offsetX={-145}
                                             offsetY={-5}>
                                             <div className="exercise-content__settings-modal">
                                                 <ul className="exercise-content__settings-menu">

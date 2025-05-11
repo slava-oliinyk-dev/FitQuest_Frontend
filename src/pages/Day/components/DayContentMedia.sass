@@ -1,0 +1,117 @@
+@import '../../../styles/_variables'
+@media (min-width: 1820px)
+    .day-content
+        &--with-wrapper
+            grid-template-columns: repeat(5, 18rem)
+            grid-template-rows: repeat(4, 8rem)
+@media (min-width: 2120px)
+    .day-content__card
+        width: 100%
+    .day-content
+        &--with-wrapper
+            grid-template-columns: repeat(6, 18rem)
+            grid-template-rows: repeat(4, 8rem)
+
+@media (min-width: 1580px) and (max-width: 1819px)
+    .day-content
+        &--with-wrapper
+            grid-template-columns: repeat(4, 18rem)
+            grid-template-rows: repeat(4, 8rem)
+
+@media (max-width: 1215px)
+    .day-content
+        &--with-wrapper
+            grid-template-columns: repeat(3, 16rem)
+            grid-template-rows: repeat(3, 8rem)
+        &__card
+            width: 100%
+            &-description
+                font-size: $font-size-13
+            &-title,
+            &-title-button
+                font-size: $font-size-18
+@media (max-width: 1080px)
+    .day-content
+        &--with-wrapper
+            grid-template-columns: repeat(3, 18rem)
+            grid-template-rows: repeat(3, 8rem)
+        &__card
+            &-description
+                font-size: $font-size-14
+            &-title,
+            &-title-button
+                font-size: $font-size-20
+
+@media (max-width: 940px)
+    .day-content
+        &--with-wrapper
+            grid-template-columns: repeat(3, 16rem)
+        &__card
+            width: 100%
+            &-description
+                font-size: $font-size-13
+            &-title,
+            &-title-button
+                font-size: $font-size-18
+@media (max-width: 840px)
+    .day-content
+        &--with-wrapper
+            grid-template-columns: repeat(2, 20rem)
+        &__card
+            &-description
+                font-size: $font-size-14
+            &-title,
+            &-title-button
+                font-size: $font-size-20
+
+@media (max-width: 700px)
+    .day-content
+        &--with-wrapper
+            grid-template-columns: repeat(2, 18rem)
+@media (max-width: 630px)
+    .day-content
+        &--with-wrapper
+            grid-template-columns: repeat(2, 17rem)
+
+@media (max-width: 603px)
+    .day-content
+        &--with-wrapper
+            justify-content: center
+            grid-template-columns: repeat(1, 25rem)
+@media (max-width: 436px)
+    .day-content
+        &--with-wrapper
+            grid-template-columns: repeat(1, 23rem)
+@media (max-width: 400px)
+    .day-content
+        &--with-wrapper
+            grid-template-columns: repeat(1, 20rem)
+@media (max-width: 365px)
+    .day-content
+        &--with-wrapper
+            grid-template-columns: repeat(1, 18rem)
+@media (max-width: 333px)
+    .day-content
+        &--with-wrapper
+            grid-template-columns: repeat(1, 16rem)
+        &__card
+            &-description
+                font-size: $font-size-13
+            &-title,
+            &-title-button
+                font-size: $font-size-18
+    .title-heading
+        font-size: 1.2rem
+
+@media (max-width: 295px)
+    .day-content
+        &--with-wrapper
+            grid-template-columns: repeat(1, 14rem)
+        &__card
+            width: 100%
+            &-description,
+            &-date
+                font-size: $font-size-12
+            &-title,
+            &-title-button
+                font-size: $font-size-16

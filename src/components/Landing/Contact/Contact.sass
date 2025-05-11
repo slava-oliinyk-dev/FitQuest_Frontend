@@ -1,0 +1,72 @@
+@import '../../../styles/_mixins-landing'
+@import '../../../styles/_variables-landing'
+@import '../../../styles/_placeholders'
+
+.contact
+    @include main-style
+    margin-bottom: 4.375rem
+    &__content
+        @extend %flex-space-between
+        align-items: center
+    &__title
+        font-size: $font-size-30
+        margin-bottom: -0.3rem
+    &__subtitle
+        font-weight: $font-weight-400
+    &__forms
+        display: flex
+        flex-direction: column
+        gap: 1.25rem
+        margin-top: 1.3rem
+        position: relative
+        margin-right: 0.625rem
+    &__input
+        width: 32rem
+        padding: 0.6rem
+        border-radius: 0.188rem
+        border: 1.5px solid $color-white
+        background-color: $color-black
+        color: $color-white
+        font-size: $font-size-14
+        &-question
+            height: 9.688rem
+            padding-top: 0.625rem
+    &__input::placeholder
+        color: $color-white
+    &__btn
+        max-width: 40.625rem
+        padding: 0.6rem
+        background-color: $color-orange
+        color: $color-black
+        font-size: $font-size-15
+        border-radius: 0.188rem
+        border-style: none
+    &__img
+        border-radius: 0.313rem
+        margin-top: 1.2rem
+        max-height: 20.875rem
+    &__error
+        position: absolute
+        color: red
+        top: -1.45rem
+        font-size: 0.813rem
+.modal__contact
+    &-title
+        font-size: $font-size-22
+    &-subtitle
+        font-size: $font-size-15
+    &-button
+        margin-top: 0.625rem
+        width: 7rem
+        padding: 0.313rem
+        background-color: $color-orange
+        border-style: none
+        border-radius: 0.188rem
+        font-size: $font-size-14
+input:focus,
+textarea:focus
+    outline: none
+
+input:focus::placeholder,
+textarea:focus::placeholder
+    color: transparent

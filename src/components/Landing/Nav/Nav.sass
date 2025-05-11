@@ -1,0 +1,42 @@
+@import '../../../styles/_mixins-landing'
+@import '../../../styles/_variables-landing'
+@import '../../../styles/_placeholders'
+
+.nav
+    &__burger,
+    &__close
+        display: none
+        background: none
+        border: none
+        cursor: pointer
+    &__wrapper
+        @extend %flex-space-between
+        position: relative
+        padding: 1.25rem 3.125rem 3rem 3.125rem
+        max-width: $max-width
+        align-items: center
+        margin: $margin-auto
+    &__logo
+        @extend %logo
+    &__list
+        @extend %flex-space-between
+        font-size: $font-size-14
+        font-weight: $font-weight-500
+        gap: 2.5rem
+    &__button
+        @extend %button-style
+        font-size: $font-size-14
+        width: 6.5rem
+        height: 1.8rem
+        padding-top: 0.188rem
+        border-radius: $border
+        background-color: $color-orange
+        &--mobile
+            display: none
+            @extend %button-style
+            font-size: $font-size-14
+            width: 6.5rem
+            height: 1.8rem
+            padding-top: 0.188rem
+            border-radius: $border
+            background-color: $color-orange

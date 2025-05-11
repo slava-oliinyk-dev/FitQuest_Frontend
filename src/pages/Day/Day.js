@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Day.sass'
+import './DayMedia.sass'
 import Title from "../../components/Title/Title";
 import Modal from '../../components/Modal/Modal';
 import DayContent from './components/DayContent';
@@ -15,14 +16,24 @@ function Day({ selectedProgramCardId, onDayCardSelect }) {
     const [isModalVisible, setModalVisible] = useState(false);
     const [days, setDays] = useState([])
     const [loading, setLoading] = useState(true);
+    const [daysPerPage, setDaysPerPage] = useState(getDaysPerPage());
+    const [errorMessage, setErrorMessage] = useState('');
 
-    const daysPerPage = 9;
-
+    function getDaysPerPage() {
+        const w = window.innerWidth;
+        if (w < 420) return 4;
+        if (w < 604) return 5;
+        if (w < 841) return 8;
+        if (w < 1579) return 9;
+        if (w < 1819) return 16;
+        if (w < 1820) return 20;
+        return 20;
+    }
 
     useEffect(() => {
         const fetchDays = async () => {
             try {
-                const data = await apiRequest(`/day/${selectedProgramCardId}`, 'GET');
+                const data = await apiRequest(`/day/${selectedProgramCardId}`, 'GET', null, { withCredentials: true });
                 setDays(data);
                 setLoading(false)
             } catch (error) {
@@ -32,6 +43,16 @@ function Day({ selectedProgramCardId, onDayCardSelect }) {
         }
         fetchDays();
     }, [])
+
+    useEffect(() => {
+        const handleResize = () => {
+            setDaysPerPage(getDaysPerPage());
+        };
+        window.addEventListener('resize', handleResize);
+        handleResize();
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
 
     const totalPages = Math.ceil(days.length / daysPerPage);
 
@@ -45,6 +66,7 @@ function Day({ selectedProgramCardId, onDayCardSelect }) {
     const closeModal = () => {
         setModalVisible(false);
         setSelectedDayDrop('Select day of the week')
+        setErrorMessage('');
     }
 
     const handleInputDayChange = (event) => {
@@ -53,16 +75,24 @@ function Day({ selectedProgramCardId, onDayCardSelect }) {
 
     const handleAddDay = async () => {
         if (!dayDescription.trim() || selectedDayDrop === 'Select day of the week') {
-            alert('Day cannot be empty');
+            if (selectedDayDrop === 'Select day of the week') {
+                setErrorMessage('Select day of the week');
+                return;
+            }
+            if (!dayDescription.trim()) {
+                setErrorMessage('Enter a description');
+                return;
+            }
             return;
         }
         try {
-            const newDayCard = await apiRequest(`/day/${selectedProgramCardId}`, 'POST', { dayName: selectedDayDrop, muscle: dayDescription })
+            const newDayCard = await apiRequest(`/day/${selectedProgramCardId}`, 'POST', { dayName: selectedDayDrop, muscle: dayDescription }, { withCredentials: true })
             setDays((prevDays) => [...prevDays, newDayCard])
             closeModal()
             setSelectedDayDrop('Select day of the week')
         } catch (error) {
-            console.error('Error creating day card:', error.message);
+            const msg = error.response?.data?.message || 'Failed to create day. Try again';
+            setErrorMessage(msg);
         }
     }
 
@@ -96,12 +126,15 @@ function Day({ selectedProgramCardId, onDayCardSelect }) {
                         <DropDown
                             selectedDay={selectedDayDrop}
                             setSelectedDay={setSelectedDayDrop}
+
                         />
                         <input className='day__modal-input' type="text" placeholder='Enter description' onChange={handleInputDayChange} maxLength={85}
                         />
-
+                        {errorMessage && (
+                            <p className="day__modal-error">{errorMessage}</p>
+                        )}
                     </div>
-                    <div>
+                    <div className='day__modal-btn'>
                         <button className='day__modal-btn-cancel' onClick={closeModal}>Cancel</button>
                         <button className='day__modal-btn-add' onClick={handleAddDay}>Add</button>
                     </div>

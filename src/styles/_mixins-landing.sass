@@ -1,0 +1,52 @@
+=flex-center($mb: 2.5rem)
+    display: flex
+    align-items: center
+    gap: 2rem
+    margin-bottom: $mb
+
+=flex-space-wrap
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    align-items: flex-start
+
+=info-style
+    max-width: 18.75rem
+    white-space: pre-wrap
+    flex: 1
+    font-weight: $font-weight-400
+    font-size: $font-size-16
+
+=title-style
+    font-size: $font-size-30
+    line-height: 1.05
+
+=num-style
+    color: $color-orange
+    font-size: $font-size-150
+
+=main-style
+    max-width: $max-width
+    margin: 4.375rem auto 0
+    padding: 0 3.125rem
+
+=anchorTop
+    display: flex
+    flex-direction: column
+    min-height: 100vh
+    justify-content: center
+
+=pinToBottom
+    display: flex
+    flex: 1
+    align-items: center
+    margin-top: -50px
+
+=about-picture
+    order: 3
+    flex: 0 0 100%
+    & > img
+        width: 100% !important
+        max-width: none !important
+        margin-left: 0 !important
+        display: block

@@ -3,9 +3,22 @@
 @import '../../styles/_placeholders'
 
 .exercise
+    overflow-y: auto
+
+    &__main
+        display: flex
+        flex-direction: column
+        height: calc(100vh - 6rem)
+
     &__pagination
         +pagination
 
+    &__modal-error
+        color: $color-error
+        font-size: $font-size-14
+
+    &-modal__buttons
+        margin-top: 0.625rem
     &-modal__input
         +modal-input
 
@@ -15,10 +28,9 @@
 
     &-modal__inputs
         @extend %flex-space-between
-        width: 31.25rem
-        margin-bottom: 1.25rem
-        margin-left: 2.7rem
-
+        width: 100%
+        margin-bottom: 0.625rem
+        padding: 0 2.5rem
         &-input-label label
             display: block
             color: $color-gray

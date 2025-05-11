@@ -1,0 +1,38 @@
+@import "../../styles/_variables"
+@import "../../styles/_mixins"
+
+@media (max-width: 1080px)
+    .sidebar
+        position: fixed
+        top: 0
+        left: -100%
+        width: 15.75rem
+        height: 100vh
+        transition: left .3s ease
+        z-index: 13
+
+    .sidebar--open
+        left: 0
+
+    .sidebar__burger
+        display: block
+        position: fixed
+        top: 2rem
+        left: 1rem
+        color: $color-white
+        z-index: 13
+
+    .sidebar__close
+        display: block
+        position: absolute
+        top: 1.6rem
+        right: 1rem
+        color: $color-white
+        z-index: 13
+
+    .sidebar__overlay
+        display: block
+        position: fixed
+        inset: 0
+        background-color: rgba(0, 0, 0, .4)
+        z-index: 10

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.sass'
+import '../../styles/global.sass'
 import Program from '../Program/Program'
 import Day from '../Day/Day'
 import Header from '../../components/Header/Header';

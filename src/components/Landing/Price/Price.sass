@@ -1,0 +1,29 @@
+@import '../../../styles/_mixins-landing'
+@import '../../../styles/_variables-landing'
+@import '../../../styles/_placeholders'
+
+.price
+    @include main-style
+    @extend %flex-space-between
+
+    &__img
+        border-radius: 0.313rem
+        margin-right: 1.25rem
+    &__title
+        text-align: right
+        font-size: $font-size-30
+        margin-bottom: 1.688rem
+    &__subtitle
+        max-width: 19.375rem
+        white-space: pre-wrap
+        font-weight: $font-weight-400
+        margin-bottom: 3.75rem
+        font-size: $font-size-16
+    &__btn
+        width: 19.375rem
+        background-color: $color-orange
+        border-style: none
+        height: 2.188rem
+        border-radius: 0.188rem
+        color: $color-black
+        font-size: $font-size-15

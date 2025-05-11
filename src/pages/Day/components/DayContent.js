@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import "./DayContent.sass"
+import "./DayContentMedia.sass"
 import { settingsIcon, settingsOrangeIcon, editIcon, deleteIcon } from '../../../assets/icons'
 import EmptyStateMessage from "../../../components/EmptyStateMessage/EmptyStateMessage";
 import SettingsModal from "../../../components/SettingsModal/SettingsModal";
@@ -35,7 +36,7 @@ function DayContent({ page, daysPerPage, days, setDays, openModal, onProgramDayC
     const saveDescriptionChange = async (day, newDescription) => {
         if (newDescription !== day.muscle) {
             try {
-                await apiRequest(`/day/${selectedProgramCardId}/days/${day.id}`, 'PUT', { muscle: newDescription, dayName: day.dayName });
+                await apiRequest(`/day/${selectedProgramCardId}/days/${day.id}`, 'PUT', { muscle: newDescription, dayName: day.dayName }, { withCredentials: true });
                 setDays((prevDays) =>
                     prevDays.map((c) =>
                         c.id === day.id ? { ...c, muscle: newDescription } : c
@@ -65,7 +66,7 @@ function DayContent({ page, daysPerPage, days, setDays, openModal, onProgramDayC
     const handleDeleteDay = async () => {
         if (!activeCardId) return
         try {
-            await apiRequest(`/day/${selectedProgramCardId}/days/${activeCardId}`, 'DELETE')
+            await apiRequest(`/day/${selectedProgramCardId}/days/${activeCardId}`, 'DELETE', null, { withCredentials: true })
             setDays((prevDays) => prevDays.filter((day) => day.id !== activeCardId));
             setActiveCardId(null);
             setModalVisible(false)
@@ -93,7 +94,7 @@ function DayContent({ page, daysPerPage, days, setDays, openModal, onProgramDayC
                                 </button>
                                 {
                                     activeCardId === day.id && (
-                                        <SettingsModal isVisible={true} onClose={closeDayCardModal} targetRef={buttonRefs.current[day.id]} offsetX={-170}
+                                        <SettingsModal isVisible={true} onClose={closeDayCardModal} targetRef={buttonRefs.current[day.id]} offsetX={-145}
                                             offsetY={-6}>
 
                                             <div className="day-content__SettingsModal">
@@ -113,7 +114,7 @@ function DayContent({ page, daysPerPage, days, setDays, openModal, onProgramDayC
                                     onChange={(e) => setEditedDescription(e.target.value)}
                                     onClick={(e) => e.stopPropagation()}
                                     onBlur={(e) => handleDescriptionBlur(day)}
-                                    maxLength={85}
+                                    maxLength={50}
                                     autoFocus />
 
                                     :

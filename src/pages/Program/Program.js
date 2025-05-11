@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import "./Program.sass"
+import "./ProgramMedia.sass"
 import Spinner from '../../components/Spinner/Spinner'
 import ProgramContent from "./components/ProgramContent"
 import Title from "../../components/Title/Title";
@@ -13,21 +14,42 @@ function Program({ onProgramCardSelect }) {
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(true);
   const [programTitle, setProgramTitle] = useState('');
-  const cardsPerPage = 9;
+  const [cardsPerPage, setCardsPerPage] = useState(getCardsPerPage());
+  const [errorMessage, setErrorMessage] = useState('');
+
+  function getCardsPerPage() {
+    const w = window.innerWidth;
+    if (w < 420) return 4;
+    if (w < 604) return 5;
+    if (w < 841) return 8;
+    if (w < 1579) return 9;
+    if (w < 1819) return 16;
+    if (w < 1820) return 20;
+    return 20;
+  }
 
   useEffect(() => {
-    console.log('Fetching programs');
     const fetchCards = async () => {
       try {
-        const data = await apiRequest('/program', 'GET');
+        const data = await apiRequest('/program', 'GET', null, { withCredentials: true });
         setCards(data);
-        setLoading(false);
       } catch (error) {
+        console.error('Error fetching programs:', error.message);
+      } finally {
         setLoading(false);
       }
     };
 
     fetchCards();
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setCardsPerPage(getCardsPerPage());
+    };
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const totalPages = Math.ceil(cards.length / cardsPerPage);
@@ -42,6 +64,7 @@ function Program({ onProgramCardSelect }) {
   const closeModal = () => {
     setModalVisible(false);
     setProgramTitle('');
+    setErrorMessage('');
   }
 
   const handleInputChange = (event) => {
@@ -50,15 +73,17 @@ function Program({ onProgramCardSelect }) {
 
   const handleAddProgram = async () => {
     if (!programTitle.trim()) {
-      alert('Program title cannot be empty');
+      setErrorMessage('Program title cannot be empty');
       return;
     }
+    setErrorMessage('');
     try {
-      const newProgram = await apiRequest('/program', 'POST', { title: programTitle });
+      const newProgram = await apiRequest('/program', 'POST', { title: programTitle }, { withCredentials: true });
       setCards((prevCards) => [...prevCards, newProgram]);
       closeModal();
     } catch (error) {
-      console.error('Error creating program:', error.message);
+      const msg = error.response?.data?.message || 'Failed to create program. Try again';
+      setErrorMessage(msg);
     }
   };
 
@@ -94,7 +119,10 @@ function Program({ onProgramCardSelect }) {
           <h2 className='program__modal-title'>Add New Program</h2>
           <input className='program__modal-input' type="text" placeholder='Enter program name' value={programTitle}
             onChange={handleInputChange} maxLength={25} />
-          <div>
+          {errorMessage && (
+            <p className="program__modal-error">{errorMessage}</p>
+          )}
+          <div className='program__modal-btn'>
             <button className='program__modal-btn-cancel' onClick={closeModal}>Cancel</button>
             <button className='program__modal-btn-add' onClick={handleAddProgram}>Add</button>
           </div>
