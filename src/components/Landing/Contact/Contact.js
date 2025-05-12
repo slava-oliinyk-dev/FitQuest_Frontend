@@ -93,7 +93,7 @@ function Contact() {
                         {errorMessage}
                     </div>
                 )}
-                <button type="button" className='contact__btn' onClick={handleSubmit}>Send a request</button>
+                <button className='contact__btn' onClick={handleSubmit}>Send a request</button>
             </div>
             <picture>
                 <source
