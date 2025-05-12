@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
 
   useEffect(() => {
-    fetch('http://localhost:3003/users/me', { 
+    fetch('https://cooperative-encouragement-production.up.railway.app/users/me', { 
       method: 'GET',
       credentials: 'include', 
     })
