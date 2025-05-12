@@ -71,7 +71,7 @@ function Contact() {
         <h2 className='contact__title'>[ STILL HAVE QUESTIONS? ]</h2>
         <span className='contact__subtitle'>Leave a request</span>
         <div className='contact__content'>
-            <div className='contact__forms'>
+            <form className='contact__forms'>
 
                 <input type="text" className='contact__input contact__input-name' value={formData.name} placeholder='Name' name='name' onChange={handleChange} />
                 <input type="text" className='contact__input contact__input-email' value={formData.email} placeholder='Email' name='email' onChange={handleChange} />
@@ -93,8 +93,8 @@ function Contact() {
                         {errorMessage}
                     </div>
                 )}
-                <button className='contact__btn' onClick={handleSubmit}>Send a request</button>
-            </div>
+                <button type="submit" className='contact__btn' onClick={handleSubmit}>Send a request</button>
+            </form>
             <picture>
                 <source
                     media="(max-width: 620px)"
