@@ -280,7 +280,7 @@ const AuthForm = ({ mode, onSwitchMode }) => {
             <Nav />
             <div className="auth-form__content">
                 <div className="auth-form__wrapper">
-                    <div className="auth-form__signup">
+                    <form className="auth-form__signup" onSubmit={handleFormSubmit} noValidate>
                         <h3 className="auth-form__signup-title">
                             {isRegister ? 'Sign Up' : 'Sign In'}
                         </h3>
@@ -360,11 +360,11 @@ const AuthForm = ({ mode, onSwitchMode }) => {
                                 {checkboxError && <span className='auth-form__checkmark-error'>{checkboxError}</span>}
                             </div>
                         )}
-                        <button type="button" className="auth-form__btn" onClick={handleFormSubmit}>
+                        <button type="submit" className="auth-form__btn">
                             {isRegister ? 'Register' : 'Login'}
                         </button>
 
-                    </div>
+                    </form>
 
                     <div className="auth-form__signin">
                         <h2 className="auth-form__signin-title">
@@ -377,21 +377,21 @@ const AuthForm = ({ mode, onSwitchMode }) => {
                         </span>
 
                         <Modal className='modal__register' isVisible={isModalVisible} onClose={closeModal}>
-                            <div>
+                            <div className='modal__register-content'>
                                 <h2 className='modal__register-title'>Thank You for Signing Up!</h2>
                                 <p className='modal__register-subtitle'>We've sent a confirmation email to your inbox. Please check your email and click on the verification link to complete your registration.</p>
                                 <h2 className='modal__register-title-receive'>Didn't receive the letter?</h2>
-                                <input
-                                    className='modal__register-input'
-                                    type="email"
-                                    value={currentParametersValueReceive}
-                                    placeholder='Enter your email'
-                                    onChange={handleParametersReceive}
-                                    onBlur={handleReceiveBlur}
-                                />
-                                {errorsReceive && <div className='modal__register-error'>{errorsReceive}</div>}
-                                <div><button className={timer > 0 ? `modal__register-button-disable` : `modal__register-button`} onClick={resendEmail} disabled={timer > 0}>{timer > 0 ? `Resend the letter (${timer})` : 'Resend the letter'}</button></div>
-                            </div>
+                                <form className="modal__register-form" onSubmit={resendFormSubmit} noValidate>
+                                    <input
+                                        className='modal__register-input'
+                                        type="email"
+                                        value={currentParametersValueReceive}
+                                        placeholder='Enter your email'
+                                        onChange={handleParametersReceive}
+                                        onBlur={handleReceiveBlur}
+                                    />
+                                    {errorsReceive && <div className='modal__register-error'>{errorsReceive}</div>}
+                                    <button type='submit' className={timer > 0 ? `modal__register-button-disable` : `modal__register-button`} disabled={timer > 0}>{timer > 0 ? `Resend the letter (${timer})` : 'Resend the letter'}</button></form></div>
                         </Modal>
                         <button
                             className="auth-form__signin-btn"
