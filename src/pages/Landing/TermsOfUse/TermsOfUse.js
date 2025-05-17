@@ -12,8 +12,8 @@ function Terms() {
 				<span className="terms__text">
 					<span className="terms__subtitle">1) Information about the Collection of Personal Data and Contact Details of the Person Responsible</span>
 					<br />
-					1.1 We are pleased that you are using our website (hereinafter "Site"). In the following, we inform you about the handling of your personal data when using our Site. Personal data is any
-					information with which you can be personally identified.
+					1.1 We are pleased that you are using our website (hereinafter &quot;Site&quot;). In the following, we inform you about the handling of your personal data when using our Site. Personal data
+					is any information with which you can be personally identified.
 					<br />
 					1.2 Responsible for data processing regarding this Site within the meaning of the General Data Protection Regulation (GDPR) is Viacheslav Oliinyk, Haupstrasse 18, Bühl 77815, Germany, email:
 					fitquestde@gmail.com. The person responsible for the processing of personal data is the natural person who alone decides on the purposes and means of the processing.
@@ -55,10 +55,10 @@ function Terms() {
 					processing, objection, and data portability. If you have any questions or wish to exercise your rights, please contact us at the address provided above.
 					<br />
 					<br />
-					<span className="terms__subtitle">7) Changes to this Privacy Policy</span>
+					<span className="terms__subtitle">7) Changes to this Terms of Use</span>
 					<br />
-					7.1 We reserve the right to update or modify this Privacy Policy at any time. The current version of the Privacy Policy is always available on our Site. We encourage you to review it
-					regularly to stay informed about how we protect your personal data.
+					7.1 We reserve the right to update or modify these Terms of Use at any time. The current version is always available on our Site. We encourage you to review it regularly to stay informed
+					about any changes.
 				</span>
 			</div>
 			<Footer />

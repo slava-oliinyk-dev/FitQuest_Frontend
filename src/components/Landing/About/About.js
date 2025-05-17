@@ -20,9 +20,10 @@ function About() {
 		<div className="about" id="about">
 			<div className="about__plan">
 				<h2 className="about__plan-title">
-					[ PLAN, TRACK AND SHARE WITH EASE <br />
-					<span className="about__plan-title-text">SEE IT IN ACTION ]</span>
+					&#91; PLAN, TRACK AND SHARE WITH EASE <br />
+					<span className="about__plan-title-text">SEE IT IN ACTION &#93;</span>
 				</h2>
+
 				<div className="about__plan-content">
 					<picture>
 						<source media="(max-width: 550px)" srcSet={`${aboutPlan500} 1x, ${aboutPlan500x2} 2x`} />
@@ -30,8 +31,8 @@ function About() {
 					</picture>
 					<p className="about__plan-info">
 						In this section of the app, you can effortlessly design a personalized training plan. Add exercises, record your results, save your settings, and take notes to track your progress in
-						detail. The user-friendly and intuitive interface lets you quickly assemble a routine tailored to your specific goals—whether it's building muscle, boosting endurance, or improving overall
-						health. All your data is saved so you can always revisit and see how you've grown along with your program.
+						detail. The user-friendly and intuitive interface lets you quickly assemble a routine tailored to your specific goals—whether it&apos;s building muscle, boosting endurance, or improving
+						overall health. All your data is saved so you can always revisit and see how you&apos;ve grown along with your program.
 					</p>
 					<span className="about__plan-num">01.</span>
 				</div>

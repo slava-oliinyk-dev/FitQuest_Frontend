@@ -339,15 +339,17 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 					</form>
 
 					<div className="auth-form__signin">
-						<h2 className="auth-form__signin-title">{isRegister ? 'Already have an account?' : "Don't have an account?"}</h2>
+						<h2 className="auth-form__signin-title">{isRegister ? 'Already have an account?' : 'Don&apos;t have an account?'}</h2>
 						<span className="auth-form__signin-subtitle">{isRegister ? 'Sign in to continue your fitness journey with us.' : 'Sign up and start your fitness journey today.'}</span>
 
 						<Modal className="modal__register" isVisible={isModalVisible} onClose={closeModal}>
 							<div className="modal__register-content">
 								<h2 className="modal__register-title">Thank You for Signing Up!</h2>
-								<p className="modal__register-subtitle">We've sent a confirmation email to your inbox. Please check your email and click on the verification link to complete your registration.</p>
-								<h2 className="modal__register-title-receive">Didn't receive the letter?</h2>
-								<form className="modal__register-form" onSubmit={resendFormSubmit} noValidate>
+								<p className="modal__register-subtitle">
+									We&apos;ve sent a confirmation email to your inbox. Please check your email and click on the verification link to complete your registration.
+								</p>
+								<h2 className="modal__register-title-receive">Didn&apos;t receive the letter?</h2>
+								<form className="modal__register-form" onSubmit={resendEmail} noValidate>
 									<input
 										className="modal__register-input"
 										type="email"

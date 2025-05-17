@@ -6,9 +6,9 @@ function MainScreen() {
 	return (
 		<div className="landing-main" id="main-screen">
 			<h1 className="landing-main__title">
-				IT'S NOT TRAINING
+				IT&rsquo;S NOT TRAINING
 				<br />
-				<span className="landing-main__title-orange">IT'S LIFE</span>
+				<span className="landing-main__title-orange">IT&rsquo;S LIFE</span>
 			</h1>
 			<picture>
 				{mainScreenSources.map(({ media, srcSet }) => (

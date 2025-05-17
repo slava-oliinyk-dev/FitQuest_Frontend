@@ -25,7 +25,9 @@ export async function apiRequest(endpoint, method = 'GET', body = null, options 
 			try {
 				const errorData = await response.json();
 				errorMessage = errorData.err || errorMessage;
-			} catch (e) {}
+			} catch (e) {
+				console.warn('Failed to parse error response JSON', e);
+			}
 			throw new Error(errorMessage);
 		}
 

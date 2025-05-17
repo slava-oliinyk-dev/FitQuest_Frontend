@@ -40,7 +40,7 @@ function Faq() {
 				return (
 					<div key={item.id} className={`faq__item ${isActive ? 'active' : ''}`} onClick={() => toggle(item.id)}>
 						<div className="faq__question">
-							<div div className="faq__question-num">
+							<div className="faq__question-num">
 								<span className="faq__num">{item.id < 10 ? `0${item.id}.` : `${item.id}.`}</span>
 								{item.question}
 							</div>
