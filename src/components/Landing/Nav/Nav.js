@@ -8,6 +8,7 @@ import './Nav.sass';
 import './NavMedia.sass';
 import { logo } from '../../../assets/icons';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { GoogleSignInButton } from '../../GoogleSignInButton.tsx';
 
 function Nav() {
 	const navigate = useNavigate();
@@ -117,6 +118,18 @@ function Nav() {
 				<button className="nav__button" onClick={handleButtonClick}>
 					{loading ? '' : user ? 'Exit' : 'Register'}
 				</button>
+				<div className="nav__actions">
+
+					{loading ? null : user
+						? <button className="nav__button" onClick={handleButtonClick}>Exit</button>
+						: (
+							<>
+								<GoogleSignInButton />
+								<button className="nav__button" onClick={handleButtonClick}>Register</button>
+							</>
+						)
+					}
+				</div>
 			</div>
 			{isOpen && <div className="nav__overlay" onClick={toggleMenu} />}
 		</nav>
