@@ -6,8 +6,7 @@ import './AuthFormMedia.sass';
 import { apiRequest } from '../../../api/apiRequest';
 import Nav from '../../../components/Landing/Nav/Nav';
 import Footer from '../../../components/Landing/Footer/Footer';
-import { google, facebook } from '../../../assets/icons';
-import { useGoogleLogin } from '@react-oauth/google';
+import { google } from '../../../assets/icons';
 import Modal from '../../../components/Modal/Modal.js';
 
 const AuthForm = ({ mode, onSwitchMode }) => {
@@ -199,24 +198,9 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 		}
 	};
 
-	const login = useGoogleLogin({
-		onSuccess: async (credentialResponse) => {
-			try {
-				await apiRequest(`/users/google`, 'POST', credentialResponse, { withCredentials: true });
-				const userResponse = await apiRequest(`/users/me`, 'GET', null, { withCredentials: true });
-
-				if (userResponse && userResponse.user) {
-					setUser(userResponse.user);
-					navigate('/app');
-				}
-			} catch (error) {
-				setLoginError('Google Authorization Error');
-			}
-		},
-		onError: () => {
-			setLoginError('Google Authorization Error');
-		},
-	});
+	const handleGoogleRedirect = () => {
+		window.location.href = '/api/users/google';
+	};
 
 	const handleFormSubmit = async (e) => {
 		e.preventDefault();
@@ -271,7 +255,7 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 					<form className="auth-form__signup" onSubmit={handleFormSubmit} noValidate>
 						<h3 className="auth-form__signup-title">{isRegister ? 'Sign Up' : 'Sign In'}</h3>
 						<div className="auth-form__signup-icons">
-							<img src={google} className="auth-form__register__icon" alt="Google Icon" onClick={login} />
+							<img src={google} className="auth-form__register__icon" alt="Google Icon" onClick={handleGoogleRedirect} />
 						</div>
 						<span className="auth-form__signup-subtitle">or use your account</span>
 
