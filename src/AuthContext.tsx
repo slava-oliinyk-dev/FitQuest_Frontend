@@ -17,10 +17,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 	const [loading, setLoading] = useState<boolean>(true);
 
 	useEffect(() => {
-		fetch('https://cooperative-encouragement-production.up.railway.app/users/me', {
-			method: 'GET',
-			credentials: 'include',
-		})
+		fetch('/api/users/me', { credentials: 'include' })
 			.then(async (response) => {
 				if (!response.ok) {
 					setUser(null);
