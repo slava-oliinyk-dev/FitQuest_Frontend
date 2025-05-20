@@ -8,7 +8,6 @@ import './Nav.sass';
 import './NavMedia.sass';
 import { logo } from '../../../assets/icons';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { GoogleSignInButton } from '../../GoogleSignInButton/GoogleSignInButton.tsx';
 
 function Nav() {
 	const navigate = useNavigate();
@@ -125,7 +124,6 @@ function Nav() {
 						</button>
 					) : (
 						<>
-							<GoogleSignInButton />
 							<button className="nav__button" onClick={handleButtonClick}>
 								Register
 							</button>
