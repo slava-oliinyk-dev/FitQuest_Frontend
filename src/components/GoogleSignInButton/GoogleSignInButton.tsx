@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider, setPersistence, signInWithPopup, browserLocalPersistence } from 'firebase/auth';
 import { auth } from '../../firebaseConfig.tsx';
 import { useAuth } from '../../AuthContext.tsx';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +9,7 @@ export function GoogleSignInButton() {
 
 	const handleSignIn = async () => {
 		try {
+			await setPersistence(auth, browserLocalPersistence);
 			const provider = new GoogleAuthProvider();
 			const result = await signInWithPopup(auth, provider);
 			const idToken = await result.user.getIdToken();
