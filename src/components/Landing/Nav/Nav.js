@@ -119,16 +119,18 @@ function Nav() {
 					{loading ? '' : user ? 'Exit' : 'Register'}
 				</button>
 				<div className="nav__actions">
-
-					{loading ? null : user
-						? <button className="nav__button" onClick={handleButtonClick}>Exit</button>
-						: (
-							<>
-								<GoogleSignInButton />
-								<button className="nav__button" onClick={handleButtonClick}>Register</button>
-							</>
-						)
-					}
+					{loading ? null : user ? (
+						<button className="nav__button" onClick={handleButtonClick}>
+							Exit
+						</button>
+					) : (
+						<>
+							<GoogleSignInButton />
+							<button className="nav__button" onClick={handleButtonClick}>
+								Register
+							</button>
+						</>
+					)}
 				</div>
 			</div>
 			{isOpen && <div className="nav__overlay" onClick={toggleMenu} />}
