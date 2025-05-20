@@ -8,6 +8,7 @@ import Nav from '../../../components/Landing/Nav/Nav';
 import Footer from '../../../components/Landing/Footer/Footer';
 import { google } from '../../../assets/icons';
 import Modal from '../../../components/Modal/Modal.js';
+import { GoogleSignInButton } from '../../../components/GoogleSignInButton/GoogleSignInButton.tsx';
 
 const AuthForm = ({ mode, onSwitchMode }) => {
 	const { setUser } = useAuth();
@@ -255,7 +256,7 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 					<form className="auth-form__signup" onSubmit={handleFormSubmit} noValidate>
 						<h3 className="auth-form__signup-title">{isRegister ? 'Sign Up' : 'Sign In'}</h3>
 						<div className="auth-form__signup-icons">
-							<img src={google} className="auth-form__register__icon" alt="Google Icon" onClick={handleGoogleRedirect} />
+							<GoogleSignInButton />
 						</div>
 						<span className="auth-form__signup-subtitle">or use your account</span>
 
