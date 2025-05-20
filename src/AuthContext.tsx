@@ -17,13 +17,19 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 	const [loading, setLoading] = useState<boolean>(true);
 
 	useEffect(() => {
-		fetch('/api/users/me', { credentials: 'include' })
+		const BASE_URL = process.env.REACT_APP_API_URL;
+		fetch(`${BASE_URL}/users/me`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			credentials: 'include',
+		})
 			.then(async (response) => {
 				if (!response.ok) {
 					setUser(null);
 				} else {
 					const data = await response.json();
-
 					setUser(data.user);
 				}
 			})
