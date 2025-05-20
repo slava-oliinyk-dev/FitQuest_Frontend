@@ -2,12 +2,13 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-	apiKey: process.env.REACT_APP_FIREBASE_API_KEY!,
-	authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN!,
-	projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID!,
-	storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET!,
-	messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID!,
-	appId: process.env.REACT_APP_FIREBASE_APP_ID!,
+  apiKey:            "AIzaSyBZ8VK2LRrrUHOK1lVLzrmqPpRVFl1doOk",
+  authDomain:        "fitquest-a3ae4.firebaseapp.com",
+  projectId:         "fitquest-a3ae4",
+  storageBucket:     "fitquest-a3ae4.appspot.com",
+  messagingSenderId: "686300008573",
+  appId:             "1:686300008573:web:f94fd779dcd6b710dba114",
+  measurementId:     "G-G4ZDF73HRZ"
 };
 
 const app = initializeApp(firebaseConfig);
