@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 export function GoogleSignInButton() {
 	const { setUser } = useAuth();
 	const navigate = useNavigate();
-	const API = process.env.REACT_APP_API_URL;
-	const FRONT = window.location.origin;
+	const API = process.env.REACT_APP_API_URL!;
+	const REDIRECT_AFTER = '/app';
 
 	useEffect(() => {
 		setPersistence(auth, browserLocalPersistence).catch(console.error);
@@ -16,6 +16,8 @@ export function GoogleSignInButton() {
 		getRedirectResult(auth)
 			.then(async (result) => {
 				if (!result) return;
+				const idToken = await result.user.getIdToken();
+				window.location.href = `${API}/users/firebase-redirect` + `?token=${idToken}` + `&redirect=${encodeURIComponent(window.location.origin + REDIRECT_AFTER)}`;
 			})
 			.catch(console.error);
 	}, []);
@@ -30,7 +32,7 @@ export function GoogleSignInButton() {
 			try {
 				const result = await signInWithPopup(auth, provider);
 				const idToken = await result.user.getIdToken();
-				window.location.href = `${API}/users/firebase-redirect` + `?token=${idToken}` + `&redirect=${encodeURIComponent(FRONT + '/app')}`;
+				window.location.href = `${API}/users/firebase-redirect` + `?token=${idToken}` + `&redirect=${encodeURIComponent(window.location.origin + REDIRECT_AFTER)}`;
 			} catch (err) {
 				console.error(err);
 			}
