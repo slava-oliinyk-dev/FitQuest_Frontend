@@ -7,51 +7,34 @@ import { useNavigate } from 'react-router-dom';
 export function GoogleSignInButton() {
 	const { setUser } = useAuth();
 	const navigate = useNavigate();
+	const API = process.env.REACT_APP_API_URL;
+	const FRONT = window.location.origin;
 
 	useEffect(() => {
-		setPersistence(auth, browserLocalPersistence).catch((err) => console.error(err));
+		setPersistence(auth, browserLocalPersistence).catch(console.error);
+
 		getRedirectResult(auth)
 			.then(async (result) => {
-				if (result) {
-					const idToken = await result.user.getIdToken();
-					const response = await fetch(`${process.env.REACT_APP_API_URL}/users/firebase`, {
-						method: 'POST',
-						headers: {
-							'Content-Type': 'application/json',
-							Authorization: `Bearer ${idToken}`,
-						},
-						credentials: 'include',
-					});
-					const data = await response.json();
-					setUser(data);
-					navigate('/app');
-				}
+				if (!result) return;
+				navigate('/app');
 			})
-			.catch((err) => console.error(err));
-	}, [navigate, setUser]);
+			.catch(console.error);
+	}, [navigate]);
 
-	const handleSignIn = () => {
+	const handleSignIn = async () => {
 		const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 		const provider = new GoogleAuthProvider();
+
 		if (isSafari) {
-			signInWithRedirect(auth, provider);
+			await signInWithRedirect(auth, provider);
 		} else {
-			signInWithPopup(auth, provider)
-				.then(async (result) => {
-					const idToken = await result.user.getIdToken();
-					const response = await fetch(`${process.env.REACT_APP_API_URL}/users/firebase`, {
-						method: 'POST',
-						headers: {
-							'Content-Type': 'application/json',
-							Authorization: `Bearer ${idToken}`,
-						},
-						credentials: 'include',
-					});
-					const data = await response.json();
-					setUser(data);
-					navigate('/app');
-				})
-				.catch((err) => console.error(err));
+			try {
+				const result = await signInWithPopup(auth, provider);
+				const idToken = await result.user.getIdToken();
+				window.location.href = `${API}/users/firebase-redirect?token=${idToken}&redirect=${encodeURIComponent(FRONT)}`;
+			} catch (err) {
+				console.error(err);
+			}
 		}
 	};
 
