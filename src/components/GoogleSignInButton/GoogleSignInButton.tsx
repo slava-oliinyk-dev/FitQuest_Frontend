@@ -16,10 +16,9 @@ export function GoogleSignInButton() {
 		getRedirectResult(auth)
 			.then(async (result) => {
 				if (!result) return;
-				navigate('/app');
 			})
 			.catch(console.error);
-	}, [navigate]);
+	}, []);
 
 	const handleSignIn = async () => {
 		const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -31,7 +30,7 @@ export function GoogleSignInButton() {
 			try {
 				const result = await signInWithPopup(auth, provider);
 				const idToken = await result.user.getIdToken();
-				window.location.href = `${API}/users/firebase-redirect?token=${idToken}&redirect=${encodeURIComponent(FRONT)}`;
+				window.location.href = `${API}/users/firebase-redirect` + `?token=${idToken}` + `&redirect=${encodeURIComponent(FRONT + '/app')}`;
 			} catch (err) {
 				console.error(err);
 			}
