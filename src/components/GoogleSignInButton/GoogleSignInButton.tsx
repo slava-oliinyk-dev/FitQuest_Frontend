@@ -43,7 +43,9 @@ export function GoogleSignInButton() {
 		}
 	};
 
-	<button type="button" onClick={handleSignIn}>
-		Войти через Google
-	</button>;
+	return (
+		<button type="button" onClick={handleSignIn}>
+			Войти через Google
+		</button>
+	);
 }
