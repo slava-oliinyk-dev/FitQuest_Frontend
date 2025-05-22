@@ -27,7 +27,11 @@ export function GoogleSignInButton() {
 		const provider = new GoogleAuthProvider();
 
 		if (isSafari) {
-			await signInWithRedirect(auth, provider);
+			try {
+				await signInWithRedirect(auth, provider);
+			} catch (err) {
+				console.error('Ошибка при signInWithRedirect в Safari:', err);
+			}
 		} else {
 			try {
 				const result = await signInWithPopup(auth, provider);
@@ -39,5 +43,7 @@ export function GoogleSignInButton() {
 		}
 	};
 
-	return <button onClick={handleSignIn}>Войти через Google</button>;
+	<button type="button" onClick={handleSignIn}>
+		Войти через Google
+	</button>;
 }
