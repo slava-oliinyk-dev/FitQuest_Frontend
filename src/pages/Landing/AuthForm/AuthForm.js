@@ -324,7 +324,7 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 					</form>
 
 					<div className="auth-form__signin">
-						<h2 className="auth-form__signin-title">{isRegister ? 'Already have an account?' : 'Don&apos;t have an account?'}</h2>
+						<h2 className="auth-form__signin-title">{isRegister ? 'Already have an account?' : "Don't have an account?"}</h2>
 						<span className="auth-form__signin-subtitle">{isRegister ? 'Sign in to continue your fitness journey with us.' : 'Sign up and start your fitness journey today.'}</span>
 
 						<Modal className="modal__register" isVisible={isModalVisible} onClose={closeModal}>
