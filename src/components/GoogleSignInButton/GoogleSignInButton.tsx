@@ -1,41 +1,39 @@
 import React, { useEffect } from 'react';
-import { GoogleAuthProvider, setPersistence, signInWithPopup, signInWithRedirect, getRedirectResult, browserLocalPersistence } from 'firebase/auth';
+import { GoogleAuthProvider, setPersistence, signInWithPopup, signInWithRedirect, onAuthStateChanged, browserLocalPersistence, browserSessionPersistence } from 'firebase/auth';
 import { auth } from '../../firebaseConfig.tsx';
-import { useAuth } from '../../AuthContext.tsx';
-import { useNavigate } from 'react-router-dom';
 
 export function GoogleSignInButton() {
-	const { setUser } = useAuth();
-	const navigate = useNavigate();
 	const API = process.env.REACT_APP_API_URL!;
 	const REDIRECT_AFTER = '/app';
 
 	useEffect(() => {
-		setPersistence(auth, browserLocalPersistence).catch(console.error);
+		// Для iOS Safari используем sessionPersistence, иначе localPersistence
+		const isiOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent) && /Version\/[\d.]+.*Safari/.test(navigator.userAgent);
 
-		getRedirectResult(auth)
-			.then(async (result) => {
-				if (!result) return;
-				const idToken = await result.user.getIdToken();
-				window.location.href = `${API}/users/firebase-redirect` + `?token=${idToken}` + `&redirect=${encodeURIComponent(window.location.origin + REDIRECT_AFTER)}`;
-			})
-			.catch(console.error);
+		const persistence = isiOSSafari ? browserSessionPersistence : browserLocalPersistence;
+
+		setPersistence(auth, persistence).catch(console.error);
+
+		// Универсальный слушатель, срабатывает и после popup, и после redirect
+		const unsubscribe = onAuthStateChanged(auth, async (user) => {
+			if (!user) return;
+			const idToken = await user.getIdToken();
+			window.location.href = `${API}/users/firebase-redirect` + `?token=${idToken}` + `&redirect=${encodeURIComponent(window.location.origin + REDIRECT_AFTER)}`;
+		});
+
+		return () => unsubscribe();
 	}, []);
 
 	const handleSignIn = async () => {
-		const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 		const provider = new GoogleAuthProvider();
 
-		if (isSafari) {
+		try {
+			// Сначала пробуем popup (работает и на большинстве iOS-браузеров)
+			await signInWithPopup(auth, provider);
+		} catch (popupError) {
+			console.warn('Popup не сработал, пробуем Redirect:', popupError);
+			// Если не получилось — переходим на redirect
 			await signInWithRedirect(auth, provider);
-		} else {
-			try {
-				const result = await signInWithPopup(auth, provider);
-				const idToken = await result.user.getIdToken();
-				window.location.href = `${API}/users/firebase-redirect` + `?token=${idToken}` + `&redirect=${encodeURIComponent(window.location.origin + REDIRECT_AFTER)}`;
-			} catch (err) {
-				console.error(err);
-			}
 		}
 	};
 
