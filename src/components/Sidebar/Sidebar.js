@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { signOut } from 'firebase/auth'; // ← вот это
+import { auth } from '../../firebaseConfig.tsx';
 import { HashLink } from 'react-router-hash-link';
 import { useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
