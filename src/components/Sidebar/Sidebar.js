@@ -31,11 +31,12 @@ function Sidebar({ onSelectPrograms, selectedMenuItemId }) {
 
 	const handleButtonClick = async () => {
 		try {
+			await signOut(auth);
 			await apiRequest(`/users/logout`, 'POST', null, { withCredentials: true });
 			setUser(null);
-			navigate('/');
+			window.location.replace('/login');
 		} catch (error) {
-			console.error('Error logout:', error.message);
+			console.error('Error logout:', error);
 		}
 	};
 
