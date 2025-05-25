@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../../firebaseConfig.tsx';
 import { apiRequest } from '../../../api/apiRequest.js';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../AuthContext.tsx';
@@ -44,18 +46,18 @@ function Nav() {
 	const handleButtonClick = async () => {
 		if (user) {
 			try {
+				await signOut(auth);
 				await apiRequest(`/users/logout`, 'POST', null, { withCredentials: true });
 				setUser(null);
-				navigate('/');
+				window.location.replace('/');
 			} catch (error) {
-				console.error('Error logout:', error.message);
+				console.error('Error logout:', error.message || error);
 			}
 		} else {
 			navigate('/register');
 		}
 		setIsOpen(false);
 	};
-
 	return (
 		<nav className="nav">
 			<div className="nav__wrapper">
