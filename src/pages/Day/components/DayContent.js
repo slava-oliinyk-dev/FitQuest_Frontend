@@ -1,7 +1,9 @@
 import { useState, useRef } from 'react';
 import './DayContent.sass';
 import './DayContentMedia.sass';
-import { settingsIcon, settingsOrangeIcon, editIcon, deleteIcon } from '../../../assets/icons';
+import { IoEllipsisVertical } from 'react-icons/io5';
+import { MdEdit } from 'react-icons/md';
+import { MdDelete } from 'react-icons/md';
 import EmptyStateMessage from '../../../components/EmptyStateMessage/EmptyStateMessage';
 import SettingsModal from '../../../components/SettingsModal/SettingsModal';
 import { apiRequest } from '../../../api/apiRequest';
@@ -88,11 +90,12 @@ function DayContent({ page, daysPerPage, days, setDays, openModal, onProgramDayC
 										event.stopPropagation();
 										openDayCardModal(day.id);
 									}}
+									aria-label="Card Burger Menu"
 								>
-									<img src={activeCardId === day.id ? settingsOrangeIcon : settingsIcon} alt="" className="day-content__icon-button" />
+									<IoEllipsisVertical className={activeCardId === day.id ? 'day-content__settings-icon--active' : 'day-content__settings-icon'} />
 								</button>
 								{activeCardId === day.id && (
-									<SettingsModal isVisible={true} onClose={closeDayCardModal} targetRef={buttonRefs.current[day.id]} offsetX={-145} offsetY={-6}>
+									<SettingsModal isVisible={true} onClose={closeDayCardModal} targetRef={buttonRefs.current[day.id]} offsetX={-135} offsetY={-6}>
 										<div className="day-content__SettingsModal">
 											<ul className="day-content__settings-menu">
 												<li
@@ -100,16 +103,18 @@ function DayContent({ page, daysPerPage, days, setDays, openModal, onProgramDayC
 														e.stopPropagation();
 														handleChangeDescriptionClick(day);
 													}}
+													className="day-content__settings-menu--list"
 												>
-													<img className="day-content__settings-icon" src={editIcon} alt="" /> Edit description
+													<MdEdit className="day-content__edit-icon" aria-label="Card edit" /> Edit description
 												</li>
 												<li
 													onClick={(e) => {
 														e.stopPropagation();
 														handleDeleteDay();
 													}}
+													className="day-content__settings-menu--list"
 												>
-													<img className="day-content__settings-icon" src={deleteIcon} alt="" /> Delete
+													<MdDelete className="day-content__delete-icon" aria-label="Card delete" /> Delete
 												</li>
 											</ul>
 										</div>
