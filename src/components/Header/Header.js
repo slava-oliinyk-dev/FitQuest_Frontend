@@ -1,6 +1,7 @@
 import './Header.sass';
 import './HeaderMedia.sass';
 import { logoutIcon, searchIcon } from '../../assets/icons';
+import { FaSearch } from 'react-icons/fa';
 import { useState } from 'react';
 
 function Header() {
@@ -30,11 +31,11 @@ function Header() {
 	return (
 		<div className="header">
 			<div className="header__input-container">
-				<img className="header__input-icon" src={searchIcon} alt="Search Icon" />
+				<FaSearch className="header__input-icon" alt="Search Icon" />
 				<input className="header__input-field" placeholder="Search" type="text" value={inputValue} onChange={handleChange} onBlur={handleBlur} onKeyDown={handleKeyDown} />
 				{showNoResults && (
 					<div className="header__no-results">
-						<img className="header__no-results-icon" src={searchIcon} alt="Search Icon" />
+						<FaSearch className="header__no-results-icon" alt="Search Icon" />
 						<p className="header__no-results-result">No results found</p>
 					</div>
 				)}
