@@ -7,21 +7,27 @@
     +card-wrapper
 
   &__settings-menu
-    width: 10rem
+    width: 9.5rem
     font-size: $font-size-14
+    &--list
+      align-items: center
 
   &__settings-menu li:first-child
-    @include settings-menu-item(0.75rem, 0.5625rem)
+    @include settings-menu-item(0.5rem, 0rem)
 
   &__settings-menu li:last-child
-    @include settings-menu-item(0.5625rem, 0.75rem)
-
-  &__icon-button
-    @extend %button-style
+    @include settings-menu-item(0.2rem, 0.5rem)
 
   &__settings-icon
-    margin-right: 0.7rem
-    width: 1rem
+    font-size: 1.4rem
+  &__settings-icon--active
+    color: #FF6600
+    font-size: 1.4rem
+
+  &__edit-icon,
+  &__delete-icon
+    padding-right: 0.5rem
+    font-size: 1.7rem
 
   &__edit-description-input
     background-color: $color-bg-input-edit

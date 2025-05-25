@@ -1,5 +1,8 @@
 import { useRef, useState } from 'react';
-import { settingsIcon, settingsOrangeIcon, editIcon, deleteIcon, notesIcon } from '../../../assets/icons';
+import { TbNotes } from 'react-icons/tb';
+import { IoEllipsisVertical } from 'react-icons/io5';
+import { MdEdit } from 'react-icons/md';
+import { MdDelete } from 'react-icons/md';
 import './ExerciseContent.sass';
 import './ExerciseContentMedia.sass';
 import EmptyStateMessage from '../../../components/EmptyStateMessage/EmptyStateMessage';
@@ -201,8 +204,9 @@ function ExerciseContent({ page, exercisesPerPage, onDayCardId, setExercises, ex
 											e.stopPropagation();
 											openNotesModal(exercise.id);
 										}}
+										aria-label="Notepad"
 									>
-										<img src={notesIcon} alt="" className="exercise-content__icon-button" />
+										<TbNotes className="exercise-content__notepad-icon" />
 									</button>
 									{isNotesModalVisible && activeNotesId === exercise.id && (
 										<NotesModal isVisible={isNotesModalVisible} onClose={closeNotesModal}>
@@ -234,11 +238,12 @@ function ExerciseContent({ page, exercisesPerPage, onDayCardId, setExercises, ex
 											event.stopPropagation();
 											openExerciseCardModal(exercise.id);
 										}}
+										aria-label="Card Burger Menu"
 									>
-										<img src={activeCardId === exercise.id ? settingsOrangeIcon : settingsIcon} alt="" className="exercise-content__icon-button" />
+										<IoEllipsisVertical className={activeCardId === exercise.id ? 'exercise-content__settings-icon--active' : ' exercise-content__settings-icon'} />
 									</button>
 									{activeCardId === exercise.id && buttonRefs.current[exercise.id] && (
-										<SettingsModal isVisible={true} onClose={closeModal} targetRef={buttonRefs.current[exercise.id]} offsetX={-145} offsetY={-5}>
+										<SettingsModal isVisible={true} onClose={closeModal} targetRef={buttonRefs.current[exercise.id]} offsetX={-127} offsetY={-6}>
 											<div className="exercise-content__settings-modal">
 												<ul className="exercise-content__settings-menu">
 													<li
@@ -246,16 +251,19 @@ function ExerciseContent({ page, exercisesPerPage, onDayCardId, setExercises, ex
 															e.stopPropagation();
 															handleChangeTitleClick(exercise);
 														}}
+														className="exercise-content__settings-menu-item"
 													>
-														<img className="exercise-content__settings-icon" src={editIcon} alt="" /> Change name
+														<MdEdit className="exercise-content__settings-menu-item-icon" aria-label="Change name" /> Change name
 													</li>
 													<li
 														onClick={(e) => {
 															e.stopPropagation();
 															handleDeleteExercise();
 														}}
+														className="exercise-content__settings-menu-item"
 													>
-														<img className="exercise-content__settings-icon" src={deleteIcon} alt="" /> Delete
+														<MdDelete className="exercise-content__settings-menu-item-icon" aria-label="Delete" />
+														Delete
 													</li>
 												</ul>
 											</div>

@@ -1,6 +1,5 @@
 import './Header.sass';
 import './HeaderMedia.sass';
-import { logoutIcon, searchIcon } from '../../assets/icons';
 import { FaSearch } from 'react-icons/fa';
 import { useState } from 'react';
 

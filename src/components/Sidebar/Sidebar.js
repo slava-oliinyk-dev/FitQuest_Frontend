@@ -61,26 +61,26 @@ function Sidebar({ onSelectPrograms, selectedMenuItemId }) {
 	const workspaceMenuItems = [
 		{
 			id: 1,
-			icon: <IoBarbellSharp style={{ width: '1.125rem', height: '1.5rem', color: 'white' }} />,
-			activeIcon: <IoBarbellSharp style={{ width: '1.125rem', height: '1.5rem', color: '#FF6600' }} />,
+			icon: <IoBarbellSharp className="sidebar-icons" />,
+			activeIcon: <IoBarbellSharp className="sidebar-icons__active" />,
 			label: 'My Workout Programs',
 		},
 		{
 			id: 2,
-			icon: <IoIosLock style={{ width: '1.125rem', height: '1.5rem', color: 'white' }} />,
-			activeIcon: <IoIosLock style={{ width: '1.125rem', height: '1.5rem', color: '#FF6600' }} />,
+			icon: <IoIosLock className="sidebar-icons" />,
+			activeIcon: <IoIosLock className="sidebar-icons__active" />,
 			label: 'Calendar',
 		},
 		{
 			id: 3,
-			icon: <IoIosLock style={{ width: '1.125rem', height: '1.5rem', color: 'white' }} />,
-			activeIcon: <IoIosLock style={{ width: '1.125rem', height: '1.5rem', color: '#FF6600' }} />,
+			icon: <IoIosLock className="sidebar-icons" />,
+			activeIcon: <IoIosLock className="sidebar-icons__active" />,
 			label: 'Progress',
 		},
 		{
 			id: 4,
-			icon: <IoIosLock style={{ width: '1.125rem', height: '1.5rem', color: 'white' }} />,
-			activeIcon: <IoIosLock style={{ width: '1.125rem', height: '1.5rem', color: '#FF6600' }} />,
+			icon: <IoIosLock className="sidebar-icons" />,
+			activeIcon: <IoIosLock className="sidebar-icons__active" />,
 			label: 'Program Inbox',
 		},
 	];
@@ -88,14 +88,14 @@ function Sidebar({ onSelectPrograms, selectedMenuItemId }) {
 	const controlPanelMenuItems = [
 		{
 			id: 5,
-			icon: <AiFillHome style={{ width: '1.125rem', height: '1.5rem', color: 'white' }} />,
-			activeIcon: <AiFillHome style={{ width: '1.125rem', height: '1.5rem', color: '#FF6600' }} />,
+			icon: <AiFillHome className="sidebar-icons" />,
+			activeIcon: <AiFillHome className="sidebar-icons__active" />,
 			label: 'Home',
 		},
 		{
 			id: 6,
-			icon: <AiFillQuestionCircle style={{ width: '1.125rem', height: '1.5rem', color: 'white' }} />,
-			activeIcon: <AiFillQuestionCircle style={{ width: '1.125rem', height: '1.5rem', color: '#FF6600' }} />,
+			icon: <AiFillQuestionCircle className="sidebar-icons" />,
+			activeIcon: <AiFillQuestionCircle className="sidebar-icons__active" />,
 			label: (
 				<HashLink
 					smooth
@@ -110,20 +110,20 @@ function Sidebar({ onSelectPrograms, selectedMenuItemId }) {
 		},
 		{
 			id: 7,
-			icon: <IoPeopleCircleOutline style={{ width: '1.125rem', height: '1.5rem', color: 'white' }} />,
-			activeIcon: <IoPeopleCircleOutline style={{ width: '1.125rem', height: '1.5rem', color: '#FF6600' }} />,
+			icon: <IoPeopleCircleOutline className="sidebar-icons" />,
+			activeIcon: <IoPeopleCircleOutline className="sidebar-icons__active" />,
 			label: 'Contact & Social',
 		},
 		{
 			id: 8,
-			icon: <IoInformationCircle style={{ width: '1.125rem', height: '1.5rem', color: 'white' }} />,
-			activeIcon: <IoInformationCircle style={{ width: '1.125rem', height: '1.5rem', color: '#FF6600' }} />,
+			icon: <IoInformationCircle className="sidebar-icons" />,
+			activeIcon: <IoInformationCircle className="sidebar-icons__active" />,
 			label: 'Privacy & Legal',
 		},
 		{
 			id: 9,
-			icon: <TbLogout style={{ width: '1.125rem', height: '1.5rem', color: 'white' }} />,
-			activeIcon: <TbLogout style={{ width: '1.125rem', height: '1.5rem', color: '#FF6600' }} />,
+			icon: <TbLogout className="sidebar-icons" />,
+			activeIcon: <TbLogout className="sidebar-icons__active" />,
 			label: 'Log Out',
 			onClick: handleButtonClick,
 		},

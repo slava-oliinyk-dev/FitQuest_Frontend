@@ -1,7 +1,9 @@
 import { useState, useRef } from 'react';
 import './ProgramContent.sass';
 import './ProgramContentMedia.sass';
-import { settingsIcon, profileIcon, editIcon, shareIcon, deleteIcon, settingsOrangeIcon } from '../../../assets/icons';
+import { IoEllipsisVertical } from 'react-icons/io5';
+import { MdEdit } from 'react-icons/md';
+import { MdDelete } from 'react-icons/md';
 import SettingsModal from '../../../components/SettingsModal/SettingsModal';
 import EmptyStateMessage from '../../../components/EmptyStateMessage/EmptyStateMessage';
 import { apiRequest } from '../../../api/apiRequest';
@@ -100,11 +102,12 @@ function ProgramContent({ page, cardsPerPage, cards, setCards, onProgramCardClic
 									event.stopPropagation();
 									openModalCard(card.id);
 								}}
+								aria-label="Card Burger Menu"
 							>
-								<img className="program-content__card-settings-icon" src={activeCardId === card.id ? settingsOrangeIcon : settingsIcon} alt="Settings Icon" />
+								<IoEllipsisVertical className={activeCardId === card.id ? 'program-content__settings-icon--active' : ' program-content__settings-icon'} />
 							</button>
 							{activeCardId === card.id && (
-								<SettingsModal isVisible={true} onClose={closeModal} targetRef={buttonRefs.current[card.id]} offsetX={-145} offsetY={-6}>
+								<SettingsModal isVisible={true} onClose={closeModal} targetRef={buttonRefs.current[card.id]} offsetX={-128} offsetY={-6}>
 									<div className="program-content__SettingsModal">
 										<ul className="program-content__settings-menu">
 											<li
@@ -112,16 +115,18 @@ function ProgramContent({ page, cardsPerPage, cards, setCards, onProgramCardClic
 													e.stopPropagation();
 													handleChangeNameClick(card);
 												}}
+												className="program-content__settings-menu--list"
 											>
-												<img className="program-content__settings-icon" src={editIcon} alt="" /> Change name
+												<MdEdit className="program-content__edit-icon" aria-label="Card edit" /> Change name
 											</li>
 											<li
 												onClick={(e) => {
 													e.stopPropagation();
 													handleDeleteProgram();
 												}}
+												className="program-content__settings-menu--list"
 											>
-												<img className="program-content__settings-icon" src={deleteIcon} alt="" /> Delete
+												<MdDelete className="program-content__delete-icon" aria-label="Card delete" /> Delete
 											</li>
 										</ul>
 									</div>

@@ -7,16 +7,25 @@
         +card-wrapper
     &__card
         +card
-    &__settings-icon
-        margin-right: 0.7rem
-        width: 1rem
+    &__notepad-icon
+        font-size: 1.4rem
     &__settings-menu
-        width: 10rem
+        width: 9rem
         font-size: $font-size-14
+        &-item
+            align-items: center
+            &-icon
+                padding-right: 0.5rem
+                font-size: 1.7rem
+    &__settings-icon
+        font-size: 1.4rem
+    &__settings-icon--active
+        color: #FF6600
+        font-size: 1.4rem
     &__settings-menu li:first-child
-        @include settings-menu-item(0.75rem, 0.5625rem)
+        @include settings-menu-item(0.55rem, 0rem)
     &__settings-menu li:last-child
-        @include settings-menu-item(0.5625rem, 0.75rem)
+        @include settings-menu-item(0.2rem, 0.55rem)
     &__card-title-button
         @extend %flex-space-between
 
