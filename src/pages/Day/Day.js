@@ -125,7 +125,7 @@ function Day({ selectedProgramCardId, onDayCardSelect }) {
 					<h2 className="day__modal-title">Add new workout day</h2>
 					<div className="day__modal-input-dropdown">
 						<DropDown selectedDay={selectedDayDrop} setSelectedDay={setSelectedDayDrop} />
-						<input className="day__modal-input" type="text" placeholder="Enter description" onChange={handleInputDayChange} maxLength={85} />
+						<input className="day__modal-input" type="text" placeholder="Enter description" onChange={handleInputDayChange} maxLength={50} />
 						{errorMessage && <p className="day__modal-error">{errorMessage}</p>}
 					</div>
 					<div className="day__modal-btn">

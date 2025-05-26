@@ -6,7 +6,6 @@ import './AuthFormMedia.sass';
 import { apiRequest } from '../../../api/apiRequest';
 import Nav from '../../../components/Landing/Nav/Nav';
 import Footer from '../../../components/Landing/Footer/Footer';
-import { google } from '../../../assets/icons';
 import Modal from '../../../components/Modal/Modal.js';
 import { GoogleSignInButton } from '../../../components/GoogleSignInButton/GoogleSignInButton.tsx';
 
@@ -199,10 +198,6 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 		}
 	};
 
-	const handleGoogleRedirect = () => {
-		window.location.href = '/api/users/google';
-	};
-
 	const handleFormSubmit = async (e) => {
 		e.preventDefault();
 		if (isRegister) {
@@ -269,6 +264,7 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 								value={registerData.email}
 								onChange={handleChange}
 								onBlur={handleBlur}
+								maxLength={50}
 							/>
 							{errors.email && <span className="error-message">{errors.email}</span>}
 							<input
@@ -279,6 +275,7 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 								value={registerData.password}
 								onChange={handleChange}
 								onBlur={handleBlur}
+								maxLength={100}
 							/>
 							{errors.password && <span className="error-message">{errors.password}</span>}
 							{isRegister && (
@@ -291,6 +288,7 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 										value={registerData.name}
 										onChange={handleChange}
 										onBlur={handleBlur}
+										maxLength={50}
 									/>
 									{errors.name && <span className="error-message">{errors.name}</span>}
 									<input
@@ -301,6 +299,7 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 										value={registerData.uniqueLogin}
 										onChange={handleChange}
 										onBlur={handleBlur}
+										maxLength={50}
 									/>
 									{errors.uniqueLogin && <span className="error-message">{errors.uniqueLogin}</span>}
 								</div>
@@ -342,6 +341,7 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 										placeholder="Enter your email"
 										onChange={handleParametersReceive}
 										onBlur={handleReceiveBlur}
+										maxLength={50}
 									/>
 									{errorsReceive && <div className="modal__register-error">{errorsReceive}</div>}
 									<button type="submit" className={timer > 0 ? `modal__register-button-disable` : `modal__register-button`} disabled={timer > 0}>

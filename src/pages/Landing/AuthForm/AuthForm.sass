@@ -108,14 +108,19 @@
             font-size: $font-size-16
 
 .modal__register
+    &-form
+        display: flex
+        flex-direction: column
+        align-items: center
     &-title
         font-size: $font-size-22
     &-title-receive
         font-size: $font-size-18
     &-input
-        width: 18.75rem
+        width: 100%
         padding: 0.5rem
         max-height: 3.125rem
+        max-width: 25rem
         border-style: none
         border-radius: 0.188rem
         margin-top: 0.313rem

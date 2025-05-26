@@ -1,5 +1,5 @@
 import './NotesModal.sass';
-import { closeIcon } from '../../assets/icons';
+import { IoClose } from 'react-icons/io5';
 
 function NotesModal({ isVisible, onClose, children }) {
 	if (!isVisible) return null;
@@ -14,7 +14,7 @@ function NotesModal({ isVisible, onClose, children }) {
 		<div className="notes-modal__overlay" onClick={handleOverlayClickNotesModal}>
 			<div className="notes-modal">
 				<button className="notes-modal__close" onClick={onClose}>
-					<img className="notes-modal__close-icon" src={closeIcon} alt="Close Icon" />
+					<IoClose className="notes-modal__close-icon" aria-label="Close Icon" />
 				</button>
 				{children}
 			</div>

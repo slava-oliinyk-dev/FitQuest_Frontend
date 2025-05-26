@@ -63,9 +63,9 @@ function Contact() {
 			<span className="contact__subtitle">Leave a request</span>
 			<div className="contact__content">
 				<div className="contact__forms">
-					<input type="text" className="contact__input contact__input-name" value={formData.name} placeholder="Name" name="name" onChange={handleChange} />
-					<input type="text" className="contact__input contact__input-email" value={formData.email} placeholder="Email" name="email" onChange={handleChange} />
-					<textarea className="contact__input contact__input-question" value={formData.message} placeholder="Your question" name="message" onChange={handleChange} />
+					<input type="text" className="contact__input contact__input-name" maxLength={50} value={formData.name} placeholder="Name" name="name" onChange={handleChange} />
+					<input type="text" className="contact__input contact__input-email" maxLength={50} value={formData.email} placeholder="Email" name="email" onChange={handleChange} />
+					<textarea className="contact__input contact__input-question" maxLength={800} value={formData.message} placeholder="Your question" name="message" onChange={handleChange} />
 					<Modal className="modal__contact" isVisible={isModalVisible} onClose={closeModal}>
 						<div>
 							<h2 className="modal__contact-title">Request Received</h2>

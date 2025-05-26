@@ -216,6 +216,7 @@ function ExerciseContent({ page, exercisesPerPage, onDayCardId, setExercises, ex
 												placeholder="Add notes, for example, about exercise technique or any tips to improve performance..."
 												onBlur={() => handleNotesBlur(exercise, currentNotesValue)}
 												onChange={handleNotesValueChange}
+												maxLength={2000}
 											>
 												{exercise.note}
 											</textarea>

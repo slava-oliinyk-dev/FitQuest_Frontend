@@ -31,7 +31,7 @@ function Header() {
 		<div className="header">
 			<div className="header__input-container">
 				<FaSearch className="header__input-icon" alt="Search Icon" />
-				<input className="header__input-field" placeholder="Search" type="text" value={inputValue} onChange={handleChange} onBlur={handleBlur} onKeyDown={handleKeyDown} />
+				<input className="header__input-field" maxLength={50} placeholder="Search" type="text" value={inputValue} onChange={handleChange} onBlur={handleBlur} onKeyDown={handleKeyDown} />
 				{showNoResults && (
 					<div className="header__no-results">
 						<FaSearch className="header__no-results-icon" alt="Search Icon" />
