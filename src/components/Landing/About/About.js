@@ -3,17 +3,22 @@ import './AboutMedia.sass';
 import {
 	mockupOne300,
 	mockupOne300x2,
+	mockupOne300x3,
 	mockupTwo300,
 	mockupTwo300x2,
+	mockupTwo300x3,
 	mockupThree300,
 	mockupThree300x2,
+	mockupThree300x3,
 	aboutPlan500,
 	aboutPlan500x2,
 	aboutPlan500x3,
 	aboutVisual500,
 	aboutVisual500x2,
+	aboutVisual500x3,
 	aboutCalendar500,
 	aboutCalendar500x2,
+	aboutCalendar500x3,
 } from '../../../assets/images.js';
 
 function About() {
@@ -28,7 +33,7 @@ function About() {
 				<div className="about__plan-content">
 					<picture>
 						<source media="(max-width: 550px)" srcSet={`${aboutPlan500} 1x, ${aboutPlan500x2} 2x, ${aboutPlan500x3} 3x`} />
-						<img className="about__plan-img" src={mockupOne300} srcSet={`${mockupOne300} 1x, ${mockupOne300x2} 2x`} alt="" loading="lazy" />
+						<img className="about__plan-img" src={mockupOne300} srcSet={`${mockupOne300} 1x, ${mockupOne300x2} 2x, ${mockupOne300x3} 3x`} alt="" loading="lazy" />
 					</picture>
 					<p className="about__plan-info">
 						In this section of the app, you can effortlessly design a personalized training plan. Add exercises, record your results, save your settings, and take notes to track your progress in
@@ -49,8 +54,8 @@ function About() {
 						journey is clearly mapped out, keeping you motivated and on track to reach your goals.
 					</p>
 					<picture>
-						<source media="(max-width: 550px)" srcSet={`${aboutVisual500} 1x, ${aboutVisual500x2} 2x`} />
-						<img className="about__visual-img" src={mockupTwo300} srcSet={`${mockupTwo300} 1x, ${mockupTwo300x2} 2x`} alt="" loading="lazy" />
+						<source media="(max-width: 550px)" srcSet={`${aboutVisual500} 1x, ${aboutVisual500x2} 2x, ${aboutVisual500x3} 3x`} />
+						<img className="about__visual-img" src={mockupTwo300} srcSet={`${mockupTwo300} 1x, ${mockupTwo300x2} 2x, ${mockupTwo300x3} 3x`} alt="" loading="lazy" />
 					</picture>
 				</div>
 			</div>
@@ -59,8 +64,8 @@ function About() {
 				<h2 className="about__calendar-title">[ SCHEDULE YOUR SUCCESS ]</h2>
 				<div className="about__calendar-content">
 					<picture>
-						<source media="(max-width: 550px)" srcSet={`${aboutCalendar500} 1x, ${aboutCalendar500x2} 2x`} />
-						<img className="about__calendar-img" src={mockupThree300} srcSet={`${mockupThree300} 1x, ${mockupThree300x2} 2x`} alt="" loading="lazy" />
+						<source media="(max-width: 550px)" srcSet={`${aboutCalendar500} 1x, ${aboutCalendar500x2} 2x, ${aboutCalendar500x3} 3x`} />
+						<img className="about__calendar-img" src={mockupThree300} srcSet={`${mockupThree300} 1x, ${mockupThree300x2} 2x, ${mockupThree300x3} 3x`} alt="" loading="lazy" />
 					</picture>
 					<p className="about__calendar-info">
 						Effortlessly plan your workouts with our interactive calendar. Select training days, set reminders, and organize your fitness journey all in one place. With an intuitive interface,
