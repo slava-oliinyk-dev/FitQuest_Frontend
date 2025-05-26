@@ -1,16 +1,21 @@
 import mockupOne300 from './images/1iMockup300.png';
 import mockupOne300x2 from './images/1iMockup300@2x.png';
+import mockupOne300x3 from './images/1iMockup300@3x.png';
 import mockupTwo300 from './images/2iMockup300.png';
 import mockupTwo300x2 from './images/2iMockup300@2x.png';
+import mockupTwo300x3 from './images/2iMockup300@3x.png';
 import mockupThree300 from './images/3iMockup300.png';
 import mockupThree300x2 from './images/3iMockup300@2x.png';
+import mockupThree300x3 from './images/3iMockup300@3x.png';
 import aboutPlan500 from './images/aboutPlan500.jpg';
 import aboutPlan500x2 from './images/aboutPlan500@2x.jpg';
 import aboutPlan500x3 from './images/aboutPlan500@3x.jpg';
 import aboutVisual500 from './images/aboutVisual500.jpg';
 import aboutVisual500x2 from './images/aboutVisual500@2x.jpg';
+import aboutVisual500x3 from './images/aboutVisual500@3x.jpg';
 import aboutCalendar500 from './images/aboutCalendar500.jpg';
 import aboutCalendar500x2 from './images/aboutCalendar500@2x.jpg';
+import aboutCalendar500x3 from './images/aboutCalendar500@3x.jpg';
 import main360 from './images/main360.jpg';
 import main360x2 from './images/main360@2x.jpg';
 import main500 from './images/main500.jpg';
@@ -45,17 +50,22 @@ import contact560x2 from './images/contact560@2x.jpg';
 export {
 	mockupOne300,
 	mockupOne300x2,
+	mockupOne300x3,
 	mockupTwo300,
 	mockupTwo300x2,
+	mockupTwo300x3,
 	mockupThree300,
 	mockupThree300x2,
+	mockupThree300x3,
 	aboutPlan500,
 	aboutPlan500x2,
 	aboutPlan500x3,
 	aboutVisual500,
 	aboutVisual500x2,
+	aboutVisual500x3,
 	aboutCalendar500,
 	aboutCalendar500x2,
+	aboutCalendar500x3,
 	main360,
 	main360x2,
 	main500,
