@@ -1,5 +1,5 @@
 import './Modal.sass';
-import { closeIcon } from '../../assets/icons';
+import { IoClose } from 'react-icons/io5';
 
 function Modal({ isVisible, onClose, children }) {
 	if (!isVisible) return null;
@@ -14,7 +14,7 @@ function Modal({ isVisible, onClose, children }) {
 		<div className="modal-overlay" onClick={handleOverlayClick}>
 			<div className="modal">
 				<button className="modal__close" onClick={onClose}>
-					<img className="modal__close-icon" src={closeIcon} alt="Close Icon" />
+					<IoClose className="modal__close-icon" aria-label="Close Icon" />
 				</button>
 				{children}
 			</div>

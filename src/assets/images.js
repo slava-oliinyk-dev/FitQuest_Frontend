@@ -6,6 +6,7 @@ import mockupThree300 from './images/3iMockup300.png';
 import mockupThree300x2 from './images/3iMockup300@2x.png';
 import aboutPlan500 from './images/aboutPlan500.jpg';
 import aboutPlan500x2 from './images/aboutPlan500@2x.jpg';
+import aboutPlan500x3 from './images/aboutPlan500@3x.jpg';
 import aboutVisual500 from './images/aboutVisual500.jpg';
 import aboutVisual500x2 from './images/aboutVisual500@2x.jpg';
 import aboutCalendar500 from './images/aboutCalendar500.jpg';
@@ -50,6 +51,7 @@ export {
 	mockupThree300x2,
 	aboutPlan500,
 	aboutPlan500x2,
+	aboutPlan500x3,
 	aboutVisual500,
 	aboutVisual500x2,
 	aboutCalendar500,

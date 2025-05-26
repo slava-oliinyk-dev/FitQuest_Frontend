@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { GoogleAuthProvider, setPersistence, signInWithPopup, signInWithRedirect, onAuthStateChanged, browserLocalPersistence, browserSessionPersistence } from 'firebase/auth';
+import './GoogleSignInButton.sass';
 import { auth } from '../../firebaseConfig.tsx';
+import { FaGooglePlus } from 'react-icons/fa6';
 
 export function GoogleSignInButton() {
 	const API = process.env.REACT_APP_API_URL!;
@@ -27,10 +29,14 @@ export function GoogleSignInButton() {
 		try {
 			await signInWithPopup(auth, provider);
 		} catch (popupError) {
-			console.warn('Popup не сработал, пробуем Redirect:', popupError);
+			console.warn('Popup did not work, lets tryRedirect:', popupError);
 			await signInWithRedirect(auth, provider);
 		}
 	};
 
-	return <button onClick={handleSignIn}>Войти через Google</button>;
+	return (
+		<button type="button" className="google-sign-button" aria-label="Sign in with Google" onClick={handleSignIn}>
+			<FaGooglePlus className="google-sign-icon" />
+		</button>
+	);
 }

@@ -9,6 +9,7 @@ import {
 	mockupThree300x2,
 	aboutPlan500,
 	aboutPlan500x2,
+	aboutPlan500x3,
 	aboutVisual500,
 	aboutVisual500x2,
 	aboutCalendar500,
@@ -26,7 +27,7 @@ function About() {
 
 				<div className="about__plan-content">
 					<picture>
-						<source media="(max-width: 550px)" srcSet={`${aboutPlan500} 1x, ${aboutPlan500x2} 2x`} />
+						<source media="(max-width: 550px)" srcSet={`${aboutPlan500} 1x, ${aboutPlan500x2} 2x, ${aboutPlan500x3} 3x`} />
 						<img className="about__plan-img" src={mockupOne300} srcSet={`${mockupOne300} 1x, ${mockupOne300x2} 2x`} alt="" loading="lazy" />
 					</picture>
 					<p className="about__plan-info">
