@@ -19,8 +19,7 @@ function Program({ onProgramCardSelect }) {
 
 	function getCardsPerPage() {
 		const w = window.innerWidth;
-		if (w < 420) return 4;
-		if (w < 604) return 5;
+		if (w < 604) return 4;
 		if (w < 841) return 8;
 		if (w < 1579) return 9;
 		if (w < 1819) return 16;
