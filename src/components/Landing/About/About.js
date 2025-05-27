@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import './About.sass';
 import './AboutMedia.sass';
 import {
