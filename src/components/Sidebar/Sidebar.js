@@ -156,7 +156,7 @@ function Sidebar({ onSelectPrograms, selectedMenuItemId }) {
 						<FaTimes size={24} />
 					</button>
 				)}
-				<div className="sidebar__app-name">
+				<div className="sidebar__app-name" onClick={() => navigate('/')}>
 					<img src={logo} alt="" />
 				</div>
 				<div className="sidebar__section">
