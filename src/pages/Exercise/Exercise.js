@@ -42,6 +42,11 @@ function Exercise({ selectedDayCardId, selectedExerciseCardId, setSelectedExerci
 	}, []);
 
 	const totalPages = Math.ceil(exercises.length / exercisesPerPage);
+	useEffect(() => {
+		if (page > totalPages) {
+			setPage(totalPages > 0 ? totalPages : 1);
+		}
+	}, [page, totalPages]);
 
 	const handlePageChange = (pageNumber) => {
 		if (pageNumber >= 1 && pageNumber <= totalPages) {
