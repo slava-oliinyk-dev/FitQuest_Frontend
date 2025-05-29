@@ -86,7 +86,7 @@ function ExerciseContent({ page, exercisesPerPage, onDayCardId, setExercises, ex
 
 	const handleParametersClick = (exercise, field) => {
 		setEditingParameters({ id: exercise.id, field });
-		setCurrentParametersValue(exercise[field]);
+		setCurrentParametersValue(String(exercise[field] ?? ''));
 	};
 
 	const handleNotesValueChange = (event) => {
@@ -145,6 +145,7 @@ function ExerciseContent({ page, exercisesPerPage, onDayCardId, setExercises, ex
 	};
 
 	const handleParametersChange = async (exercise, field, newValue) => {
+		newValue = String(newValue ?? '').trim();
 		if (newValue.trim() === '') {
 			newValue = '0';
 			setCurrentParametersValue('0');
@@ -278,7 +279,9 @@ function ExerciseContent({ page, exercisesPerPage, onDayCardId, setExercises, ex
 									{editingParameters?.id === exercise.id && editingParameters?.field === 'sets' ? (
 										<input
 											className="exercise-content__inputs-input"
-											type="number"
+											type="text"
+											inputMode="numeric"
+											pattern="[0-9]*"
 											placeholder="0"
 											value={currentParametersValue}
 											onKeyDown={handleNumberInputKeyDown}
@@ -299,7 +302,9 @@ function ExerciseContent({ page, exercisesPerPage, onDayCardId, setExercises, ex
 									{editingParameters?.id === exercise.id && editingParameters?.field === 'weight' ? (
 										<input
 											className="exercise-content__inputs-input"
-											type="number"
+											type="text"
+											inputMode="numeric"
+											pattern="[0-9]*"
 											placeholder="0"
 											value={currentParametersValue}
 											onKeyDown={handleNumberInputKeyDown}
@@ -319,7 +324,9 @@ function ExerciseContent({ page, exercisesPerPage, onDayCardId, setExercises, ex
 									{editingParameters?.id === exercise.id && editingParameters?.field === 'repetitions' ? (
 										<input
 											className="exercise-content__inputs-input"
-											type="number"
+											type="text"
+											inputMode="numeric"
+											pattern="[0-9]*"
 											placeholder="0"
 											value={currentParametersValue}
 											onKeyDown={handleNumberInputKeyDown}
