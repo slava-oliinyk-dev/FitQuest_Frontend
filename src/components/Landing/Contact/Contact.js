@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { apiRequest } from '../../../api/apiRequest';
 import './Contact.sass';
 import './ContactMedia.sass';
-import { contact420, contact420x2, contact500, contact500x2, contact560, contact560x2 } from '../../../assets/images.js';
+import { contact420, contact420x2, contact420x3, contact500, contact500x2, contact500x3, contact560, contact560x2, contact560x3 } from '../../../assets/images.js';
 import Modal from '../../../components/Modal/Modal';
 
 function Contact() {
@@ -81,10 +81,10 @@ function Contact() {
 					</button>
 				</div>
 				<picture>
-					<source media="(max-width: 620px)" srcSet={`${contact560} 1x, ${contact560x2} 2x`} />
-					<source media="(max-width: 1060px)" srcSet={`${contact420} 1x, ${contact420x2} 2x`} />
-					<source media="(max-width: 1250px)" srcSet={`${contact500} 1x, ${contact500x2} 2x`} />
-					<img className="contact__img" src={contact560} srcSet={`${contact560} 1x, ${contact560x2} 2x`} alt="" loading="lazy" />
+					<source media="(max-width: 620px)" srcSet={`${contact560} 1x, ${contact560x2} 2x, ${contact560x3} 3x`} />
+					<source media="(max-width: 1060px)" srcSet={`${contact420} 1x, ${contact420x2} 2x, ${contact420x3} 3x`} />
+					<source media="(max-width: 1250px)" srcSet={`${contact500} 1x, ${contact500x2} 2x, ${contact500x3} 3x`} />
+					<img className="contact__img" src={contact560} srcSet={`${contact560} 1x, ${contact560x2} 2x,${contact560x3} 3x`} alt="" loading="lazy" />
 				</picture>
 			</div>
 		</div>
