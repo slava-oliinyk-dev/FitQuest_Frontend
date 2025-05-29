@@ -52,6 +52,11 @@ function Day({ selectedProgramCardId, onDayCardSelect }) {
 	}, []);
 
 	const totalPages = Math.ceil(days.length / daysPerPage);
+	useEffect(() => {
+		if (page > totalPages) {
+			setPage(totalPages > 0 ? totalPages : 1);
+		}
+	}, [page, totalPages]);
 
 	const handlePageChange = (pageNumber) => {
 		if (pageNumber >= 1 && pageNumber <= totalPages) {

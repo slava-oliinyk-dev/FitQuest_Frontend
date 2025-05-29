@@ -52,6 +52,11 @@ function Program({ onProgramCardSelect }) {
 	}, []);
 
 	const totalPages = Math.ceil(cards.length / cardsPerPage);
+	useEffect(() => {
+		if (page > totalPages) {
+			setPage(totalPages > 0 ? totalPages : 1);
+		}
+	}, [page, totalPages]);
 
 	const handlePageChange = (pageNumber) => {
 		if (pageNumber >= 1 && pageNumber <= totalPages) {
