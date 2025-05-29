@@ -162,15 +162,42 @@ function Exercise({ selectedDayCardId, selectedExerciseCardId, setSelectedExerci
 					<input className="exercise-modal__input" type="text" name="name" placeholder="Enter exercise name" onChange={handleInputChange} maxLength={25} />
 					<div className="exercise-modal__inputs">
 						<div className="exercise-modal__inputs-input-label">
-							<input className="exercise-modal__inputs-input" value={exerciseData.sets} name="sets" type="text" inputMode="numeric" placeholder="0" onChange={handleNumberInputChange} />
+							<input
+								className="exercise-modal__inputs-input"
+								value={exerciseData.sets}
+								name="sets"
+								type="text"
+								inputMode="numeric"
+								pattern="[0-9]*"
+								placeholder="0"
+								onChange={handleNumberInputChange}
+							/>
 							<label htmlFor="sets">sets</label>
 						</div>
 						<div className="exercise-modal__inputs-input-label">
-							<input className="exercise-modal__inputs-input" value={exerciseData.weight} name="weight" type="text" inputMode="numeric" placeholder="0" onChange={handleNumberInputChange} />
+							<input
+								className="exercise-modal__inputs-input"
+								value={exerciseData.weight}
+								name="weight"
+								type="text"
+								inputMode="numeric"
+								pattern="[0-9]*"
+								placeholder="0"
+								onChange={handleNumberInputChange}
+							/>
 							<label htmlFor="kg">kg</label>
 						</div>
 						<div className="exercise-modal__inputs-input-label">
-							<input className="exercise-modal__inputs-input" value={exerciseData.reps} name="reps" type="text" inputMode="numeric" placeholder="0" onChange={handleNumberInputChange} />
+							<input
+								className="exercise-modal__inputs-input"
+								value={exerciseData.reps}
+								name="reps"
+								type="text"
+								inputMode="numeric"
+								pattern="[0-9]*"
+								placeholder="0"
+								onChange={handleNumberInputChange}
+							/>
 							<label htmlFor="reps">reps</label>
 						</div>
 					</div>
