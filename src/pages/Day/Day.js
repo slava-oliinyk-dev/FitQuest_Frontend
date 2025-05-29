@@ -39,8 +39,10 @@ function Day({ selectedProgramCardId, onDayCardSelect }) {
 				setLoading(false);
 			}
 		};
-		fetchDays();
-	}, []);
+		if (selectedProgramCardId) {
+			fetchDays();
+		}
+	}, [selectedProgramCardId]);
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -64,9 +66,15 @@ function Day({ selectedProgramCardId, onDayCardSelect }) {
 		}
 	};
 
-	const openModal = () => setModalVisible(true);
+	const openModal = () => {
+		setDayDescription('');
+		setSelectedDayDrop('Select day of the week');
+		setErrorMessage('');
+		setModalVisible(true);
+	};
 	const closeModal = () => {
 		setModalVisible(false);
+		setDayDescription('');
 		setSelectedDayDrop('Select day of the week');
 		setErrorMessage('');
 	};

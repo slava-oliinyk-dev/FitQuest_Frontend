@@ -78,8 +78,8 @@ function DayContent({ page, daysPerPage, days, setDays, openModal, onProgramDayC
 			{days.length === 0 && !isParentModalVisible ? (
 				<EmptyStateMessage message="No workout days found. Create one now!" buttonMessage="Add days" onButtonClick={openModal} />
 			) : (
-				currentDays.map((day, index) => (
-					<div key={index} className="day-content__card" onClick={() => handleDayCardClick(day.id)}>
+				currentDays.map((day) => (
+					<div key={day.id} className="day-content__card" onClick={() => handleDayCardClick(day.id)}>
 						<div className="day-content__card-container">
 							<div className="day-content__card-title-button">
 								<h3 className="day-content__card-title">{day.dayName}</h3>
