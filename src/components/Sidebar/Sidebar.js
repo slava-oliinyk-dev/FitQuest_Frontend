@@ -146,12 +146,13 @@ function Sidebar({ onSelectPrograms, selectedMenuItemId }) {
 
 	return (
 		<>
+			{!isOpen && (
+				<button className="sidebar__burger" onClick={toggleSidebar} aria-label="Open sidebar">
+					<FaBars size={24} />
+				</button>
+			)}
 			<div className={`sidebar ${isOpen ? 'sidebar--open' : ''}`}>
-				{!isOpen ? (
-					<button className="sidebar__burger" onClick={toggleSidebar} aria-label="Open sidebar">
-						<FaBars size={24} />
-					</button>
-				) : (
+				{isOpen && (
 					<button className="sidebar__close" onClick={toggleSidebar} aria-label="Close sidebar">
 						<FaTimes size={24} />
 					</button>
