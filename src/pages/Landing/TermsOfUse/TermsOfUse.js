@@ -15,7 +15,7 @@ function Terms() {
 					1.1 We are pleased that you are using our website (hereinafter &quot;Site&quot;). In the following, we inform you about the handling of your personal data when using our Site. Personal data
 					is any information with which you can be personally identified.
 					<br />
-					1.2 Responsible for data processing regarding this Site within the meaning of the General Data Protection Regulation (GDPR) is Viacheslav Oliinyk, Haupstrasse 18, Bühl 77815, Germany, email:
+					1.2 Responsible for data processing regarding this Site within the meaning of the General Data Protection Regulation (GDPR) is Viacheslav Oliinyk, Bühl 77815, Germany, email:
 					fitquestde@gmail.com. The person responsible for the processing of personal data is the natural person who alone decides on the purposes and means of the processing.
 					<br />
 					<br />
