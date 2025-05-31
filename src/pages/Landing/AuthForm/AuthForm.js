@@ -333,7 +333,7 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 									We&apos;ve sent a confirmation email to your inbox. Please check your email and click on the verification link to complete your registration.
 								</p>
 								<h2 className="modal__register-title-receive">Didn&apos;t receive the letter?</h2>
-								<form className="modal__register-form" onSubmit={resendEmail} noValidate>
+								<form className="modal__register-form" noValidate>
 									<input
 										className="modal__register-input"
 										type="email"
@@ -344,7 +344,7 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 										maxLength={50}
 									/>
 									{errorsReceive && <div className="modal__register-error">{errorsReceive}</div>}
-									<button type="submit" className={timer > 0 ? `modal__register-button-disable` : `modal__register-button`} disabled={timer > 0}>
+									<button type="button" onClick={resendEmail} className={timer > 0 ? `modal__register-button-disable` : `modal__register-button`} disabled={timer > 0}>
 										{timer > 0 ? `Resend the letter (${timer})` : 'Resend the letter'}
 									</button>
 								</form>
