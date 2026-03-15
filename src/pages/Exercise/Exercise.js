@@ -65,7 +65,7 @@ function Exercise({ selectedDayCardId, selectedExerciseCardId, setSelectedExerci
 			}
 		};
 		fetchExercises();
-	}, []);
+	}, [selectedDayCardId]);
 
 	const initialExerciseData = {
 		name: '',
