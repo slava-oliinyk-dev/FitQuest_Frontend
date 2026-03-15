@@ -1,10 +1,10 @@
-import { useLayoutEffect, useState } from 'react';
+import { useCallback, useLayoutEffect, useState } from 'react';
 import './SettingsModal.sass';
 
 function SettingsModal({ isVisible, onClose, children, targetRef, offsetX = 0, offsetY = 0 }) {
 	const [modalStyle, setModalStyle] = useState({});
 
-	const updateModalPosition = () => {
+	const updateModalPosition = useCallback(() => {
 		if (targetRef) {
 			const rect = targetRef.getBoundingClientRect();
 			setModalStyle({
@@ -13,7 +13,7 @@ function SettingsModal({ isVisible, onClose, children, targetRef, offsetX = 0, o
 				left: rect.left + window.scrollX + offsetX,
 			});
 		}
-	};
+	}, [targetRef, offsetX, offsetY]);
 
 	useLayoutEffect(() => {
 		if (isVisible) {
@@ -28,7 +28,7 @@ function SettingsModal({ isVisible, onClose, children, targetRef, offsetX = 0, o
 		} else {
 			setModalStyle(null);
 		}
-	}, [isVisible, targetRef, offsetX, offsetY]);
+	}, [isVisible, updateModalPosition]);
 
 	if (!isVisible || modalStyle === null) return null;
 
