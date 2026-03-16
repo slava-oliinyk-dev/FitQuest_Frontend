@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { GoogleAuthProvider, setPersistence, signInWithPopup, signInWithRedirect, onAuthStateChanged, browserLocalPersistence, browserSessionPersistence } from 'firebase/auth';
+import { GoogleAuthProvider, setPersistence, signInWithRedirect, onAuthStateChanged, browserLocalPersistence, browserSessionPersistence } from 'firebase/auth';
 import './GoogleSignInButton.sass';
 import { auth } from '../../firebaseConfig.tsx';
 import { FaGooglePlus } from 'react-icons/fa6';
@@ -37,15 +37,10 @@ export function GoogleSignInButton() {
 		sessionStorage.setItem(GOOGLE_SIGN_IN_REQUESTED_KEY, 'true');
 
 		try {
-			await signInWithPopup(auth, provider);
-		} catch (popupError) {
-			console.warn('Popup did not work, lets tryRedirect:', popupError);
-			try {
-				await signInWithRedirect(auth, provider);
-			} catch (redirectError) {
-				sessionStorage.removeItem(GOOGLE_SIGN_IN_REQUESTED_KEY);
-				throw redirectError;
-			}
+			await signInWithRedirect(auth, provider);
+		} catch (redirectError) {
+			sessionStorage.removeItem(GOOGLE_SIGN_IN_REQUESTED_KEY);
+			throw redirectError;
 		}
 	};
 
