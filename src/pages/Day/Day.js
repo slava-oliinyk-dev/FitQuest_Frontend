@@ -32,7 +32,7 @@ function Day({ selectedProgramCardId, onDayCardSelect }) {
 	useEffect(() => {
 		const fetchDays = async () => {
 			try {
-				const data = await apiRequest(`/day/${selectedProgramCardId}`, 'GET', null, { withCredentials: true });
+				const data = await apiRequest(`/day/${selectedProgramCardId}/days`, 'GET', null, { withCredentials: true });
 				setDays(data);
 				setLoading(false);
 			} catch (error) {
@@ -96,8 +96,9 @@ function Day({ selectedProgramCardId, onDayCardSelect }) {
 			return;
 		}
 		try {
-			const newDayCard = await apiRequest(`/day/${selectedProgramCardId}`, 'POST', { dayName: selectedDayDrop, muscle: dayDescription }, { withCredentials: true });
+			const newDayCard = await apiRequest(`/day/${selectedProgramCardId}/days`, 'POST', { dayName: selectedDayDrop, muscle: dayDescription }, { withCredentials: true });
 			setDays((prevDays) => [...prevDays, newDayCard]);
+
 			closeModal();
 			setSelectedDayDrop('Select day of the week');
 		} catch (error) {

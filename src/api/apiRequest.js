@@ -1,4 +1,4 @@
-const BASE_URL = process.env.REACT_APP_API_URL;
+const BASE_URL = process.env.REACT_APP_API_URL || '';
 
 export async function apiRequest(endpoint, method = 'GET', body = null, options = {}) {
 	const { headers = {}, withCredentials = false } = options;

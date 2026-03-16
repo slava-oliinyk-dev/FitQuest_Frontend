@@ -22,7 +22,9 @@ function Main() {
 
 	useEffect(() => {
 		const accepted = localStorage.getItem('policyAccepted');
-		if (!accepted && location.pathname !== '/privacy') {
+		const shouldShowPolicyModal = location.pathname === '/';
+
+		if (!accepted && shouldShowPolicyModal) {
 			setIsVisible(true);
 		} else {
 			setIsVisible(false);

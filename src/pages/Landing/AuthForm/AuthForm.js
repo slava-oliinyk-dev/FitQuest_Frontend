@@ -178,13 +178,18 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 			password: registerData.password,
 		};
 		try {
-			const sendLoginData = await apiRequest(`/users/login`, 'POST', body, { withCredentials: true });
+			await apiRequest(`/users/login`, 'POST', body, { withCredentials: true });
 			const userResponse = await apiRequest(`/users/me`, 'GET', null, { withCredentials: true });
-			if (userResponse && userResponse.user) {
+			const resolvedUser = userResponse?.user || userResponse?.data?.user || userResponse || null;
+
+			if (resolvedUser) {
 				setLoginError(null);
-				setUser(userResponse.user);
+				setUser(resolvedUser);
 				navigate('/app');
+				return;
 			}
+
+			setLoginError('Login succeeded, but failed to read user profile. Please refresh the page.');
 		} catch (error) {
 			const serverMessage = error?.response?.data?.err || error?.response?.data?.message || error.message || 'An error occurred';
 

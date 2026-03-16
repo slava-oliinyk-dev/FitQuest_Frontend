@@ -57,7 +57,7 @@ function Exercise({ selectedDayCardId, selectedExerciseCardId, setSelectedExerci
 	useEffect(() => {
 		const fetchExercises = async () => {
 			try {
-				const data = await apiRequest(`/exercise/${selectedDayCardId}`, 'GET', null, { withCredentials: true });
+				const data = await apiRequest(`/exercise/${selectedDayCardId}/exercises`, 'GET', null, { withCredentials: true });
 				setExercises(data);
 				setLoading(false);
 			} catch (error) {
@@ -128,7 +128,7 @@ function Exercise({ selectedDayCardId, selectedExerciseCardId, setSelectedExerci
 		};
 
 		try {
-			const newExerciseCard = await apiRequest(`/exercise/${selectedDayCardId}`, 'POST', body, { withCredentials: true });
+			const newExerciseCard = await apiRequest(`/exercise/${selectedDayCardId}/exercises`, 'POST', body, { withCredentials: true });
 			setExercises((prev) => [...prev, newExerciseCard]);
 			closeModal();
 		} catch (error) {

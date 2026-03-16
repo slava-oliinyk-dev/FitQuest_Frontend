@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 	const [loading, setLoading] = useState<boolean>(true);
 
 	useEffect(() => {
-		const BASE_URL = process.env.REACT_APP_API_URL;
+		const BASE_URL = process.env.REACT_APP_API_URL || '';
 		fetch(`${BASE_URL}/users/me`, {
 			method: 'GET',
 			headers: {
@@ -30,7 +30,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 					setUser(null);
 				} else {
 					const data = await response.json();
-					setUser(data.user);
+					const resolvedUser = data?.user || data?.data?.user || data || null;
+					setUser(resolvedUser);
 				}
 			})
 			.catch((error) => {
