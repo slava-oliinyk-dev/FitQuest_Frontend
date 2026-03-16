@@ -106,7 +106,12 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 	};
 
 	const handleChangeBox = (event) => {
-		setIsChecked(event.target.checked);
+		const isPolicyAccepted = event.target.checked;
+		setIsChecked(isPolicyAccepted);
+
+		if (isPolicyAccepted) {
+			setCheckboxError('');
+		}
 	};
 
 	const handleParametersReceive = (e) => {
@@ -136,8 +141,10 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 			uniqueLogin: registerData.uniqueLogin,
 		};
 		try {
-			const sendLoginData = await apiRequest(`/users/register`, 'POST', body, { withCredentials: true });
+			await apiRequest(`/users/register`, 'POST', body, { withCredentials: true });
 			setLoginError(null);
+			setCheckboxError('');
+			setCurrentParametersValueReceive(registerData.email);
 			openModal();
 			setRegisterData({
 				email: '',
@@ -146,7 +153,8 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 				uniqueLogin: '',
 			});
 		} catch (error) {
-			setLoginError('Invalid login or password');
+			const serverMessage = error.message || 'An error occurred';
+			setLoginError(serverMessage);
 			setRegisterData({
 				email: '',
 				password: '',
@@ -330,7 +338,8 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 							<div className="modal__register-content">
 								<h2 className="modal__register-title">Thank You for Signing Up!</h2>
 								<p className="modal__register-subtitle">
-									We&apos;ve sent a confirmation email to your inbox. Please check your email and click on the verification link to complete your registration.
+									We&apos;ve sent a confirmation email to your inbox{currentParametersValueReceive ? ` (${currentParametersValueReceive})` : ''}. Please check your email and click on the verification
+									link to complete your registration.
 								</p>
 								<h2 className="modal__register-title-receive">Didn&apos;t receive the letter?</h2>
 								<form className="modal__register-form" noValidate>
