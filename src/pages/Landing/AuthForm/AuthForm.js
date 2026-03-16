@@ -37,6 +37,10 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 	const isRegister = mode === 'register';
 	const isLogin = mode === 'login';
 
+	const getErrorMessage = (error) => {
+		return error?.response?.data?.err || error?.response?.data?.message || error?.message || 'An error occurred';
+	};
+
 	const handleBlur = (e) => {
 		const { name, value } = e.target;
 		const updatedData = { ...registerData, [name]: value };
@@ -153,14 +157,13 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 				uniqueLogin: '',
 			});
 		} catch (error) {
-			const serverMessage = error.message || 'An error occurred';
+			const serverMessage = getErrorMessage(error);
 			setLoginError(serverMessage);
-			setRegisterData({
-				email: '',
-				password: '',
-				name: '',
-				uniqueLogin: '',
-			});
+
+			if (serverMessage.toLowerCase().includes('confirm your email')) {
+				setCurrentParametersValueReceive(registerData.email);
+				openModal();
+			}
 		}
 	};
 
@@ -194,15 +197,20 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 				navigate('/app');
 			}
 		} catch (error) {
-			const serverMessage = error?.response?.data?.err || error?.response?.data?.message || error.message || 'An error occurred';
+			const serverMessage = getErrorMessage(error);
 
 			setLoginError(serverMessage);
 			setRegisterData({
-				email: '',
+				email: registerData.email,
 				password: '',
 				name: '',
 				uniqueLogin: '',
 			});
+
+			if (serverMessage.toLowerCase().includes('confirm your email')) {
+				setCurrentParametersValueReceive(registerData.email);
+				openModal();
+			}
 		}
 	};
 
@@ -233,7 +241,7 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 			setCurrentParametersValueReceive('');
 			setErrorsReceive('');
 		} catch (error) {
-			const serverMessage = error?.response?.data?.err || error?.response?.data?.message || error.message || 'An error occurred';
+			const serverMessage = getErrorMessage(error);
 
 			setErrorsReceive(serverMessage);
 		}
