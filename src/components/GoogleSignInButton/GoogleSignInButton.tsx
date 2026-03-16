@@ -7,6 +7,7 @@ import { FaGooglePlus } from 'react-icons/fa6';
 export function GoogleSignInButton() {
 	const API = process.env.REACT_APP_API_URL;
 	const REDIRECT_AFTER = '/app';
+	const GOOGLE_SIGN_IN_REQUESTED_KEY = 'googleSignInRequested';
 
 	useEffect(() => {
 		const isiOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent) && /Version\/[\d.]+.*Safari/.test(navigator.userAgent);
@@ -15,7 +16,15 @@ export function GoogleSignInButton() {
 		setPersistence(auth, persistence).catch(console.error);
 
 		const unsubscribe = onAuthStateChanged(auth, async (user) => {
-			if (!user || !API) return;
+			if (!user) {
+				sessionStorage.removeItem(GOOGLE_SIGN_IN_REQUESTED_KEY);
+				return;
+			}
+
+			const signInRequested = sessionStorage.getItem(GOOGLE_SIGN_IN_REQUESTED_KEY) === 'true';
+			if (!signInRequested || !API) return;
+
+			sessionStorage.removeItem(GOOGLE_SIGN_IN_REQUESTED_KEY);
 			const idToken = await user.getIdToken();
 			window.location.href = `${API}/users/firebase-redirect` + `?token=${idToken}` + `&redirect=${encodeURIComponent(window.location.origin + REDIRECT_AFTER)}`;
 		});
@@ -25,12 +34,18 @@ export function GoogleSignInButton() {
 
 	const handleSignIn = async () => {
 		const provider = new GoogleAuthProvider();
+		sessionStorage.setItem(GOOGLE_SIGN_IN_REQUESTED_KEY, 'true');
 
 		try {
 			await signInWithPopup(auth, provider);
 		} catch (popupError) {
 			console.warn('Popup did not work, lets tryRedirect:', popupError);
-			await signInWithRedirect(auth, provider);
+			try {
+				await signInWithRedirect(auth, provider);
+			} catch (redirectError) {
+				sessionStorage.removeItem(GOOGLE_SIGN_IN_REQUESTED_KEY);
+				throw redirectError;
+			}
 		}
 	};
 
