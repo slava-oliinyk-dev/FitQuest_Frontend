@@ -32,6 +32,13 @@ export function GoogleSignInButton() {
 		return () => unsubscribe();
 	}, [API]);
 
+	const getMaskedValue = (value?: string) => {
+		if (!value) return 'missing';
+		const cleanValue = value.trim().replace(/^['"]|['"]$/g, '');
+		if (cleanValue.length <= 8) return `${cleanValue[0]}***${cleanValue[cleanValue.length - 1]}`;
+		return `${cleanValue.slice(0, 4)}***${cleanValue.slice(-4)} (len: ${cleanValue.length})`;
+	};
+
 	const shouldUseRedirectFallback = (errorCode) => {
 		return errorCode === 'auth/popup-blocked' || errorCode === 'auth/operation-not-supported-in-this-environment';
 	};
@@ -54,6 +61,11 @@ export function GoogleSignInButton() {
 		try {
 			await signInWithPopup(auth, provider);
 		} catch (popupError) {
+			console.info('Google sign-in diagnostics:', {
+				firebaseApiKeyFingerprint: getMaskedValue(process.env.REACT_APP_FIREBASE_API_KEY),
+				apiUrl: API || 'missing',
+				origin: window.location.origin,
+			});
 			const errorCode = popupError?.code || '';
 			if (!shouldUseRedirectFallback(errorCode)) {
 				sessionStorage.removeItem(GOOGLE_SIGN_IN_REQUESTED_KEY);
