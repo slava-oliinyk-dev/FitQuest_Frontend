@@ -18,14 +18,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
 	useEffect(() => {
 		const BASE_URL = process.env.REACT_APP_API_URL || '';
-		const pathname = window.location.pathname;
-		const shouldFetchCurrentUser = pathname.startsWith('/app');
-
-		if (!shouldFetchCurrentUser) {
-			setLoading(false);
-			return;
-		}
-
 		fetch(`${BASE_URL}/users/me`, {
 			method: 'GET',
 			headers: {
