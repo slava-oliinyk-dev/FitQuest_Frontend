@@ -285,6 +285,7 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 								value={registerData.email}
 								onChange={handleChange}
 								onBlur={handleBlur}
+								autoComplete="email"
 								maxLength={50}
 							/>
 							{errors.email && <span className="error-message">{errors.email}</span>}
@@ -296,6 +297,7 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 								value={registerData.password}
 								onChange={handleChange}
 								onBlur={handleBlur}
+								autoComplete={isRegister ? 'new-password' : 'current-password'}
 								maxLength={100}
 							/>
 							{errors.password && <span className="error-message">{errors.password}</span>}
@@ -309,6 +311,7 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 										value={registerData.name}
 										onChange={handleChange}
 										onBlur={handleBlur}
+										autoComplete="name"
 										maxLength={50}
 									/>
 									{errors.name && <span className="error-message">{errors.name}</span>}
@@ -320,6 +323,7 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 										value={registerData.uniqueLogin}
 										onChange={handleChange}
 										onBlur={handleBlur}
+										autoComplete="username"
 										maxLength={50}
 									/>
 									{errors.uniqueLogin && <span className="error-message">{errors.uniqueLogin}</span>}
@@ -363,6 +367,7 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 										placeholder="Enter your email"
 										onChange={handleParametersReceive}
 										onBlur={handleReceiveBlur}
+										autoComplete="email"
 										maxLength={50}
 									/>
 									{errorsReceive && <div className="modal__register-error">{errorsReceive}</div>}
