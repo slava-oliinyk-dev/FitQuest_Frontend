@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { GoogleAuthProvider, setPersistence, signInWithRedirect, onAuthStateChanged, browserLocalPersistence, browserSessionPersistence } from 'firebase/auth';
+import { GoogleAuthProvider, setPersistence, signInWithRedirect, signInWithPopup, onAuthStateChanged, browserLocalPersistence, browserSessionPersistence } from 'firebase/auth';
 import './GoogleSignInButton.sass';
 import { auth } from '../../firebaseConfig.tsx';
 import { FaGooglePlus } from 'react-icons/fa6';
@@ -46,21 +46,27 @@ export function GoogleSignInButton() {
 				await signInWithRedirect(auth, provider);
 			} catch (redirectError) {
 				sessionStorage.removeItem(GOOGLE_SIGN_IN_REQUESTED_KEY);
-				throw redirectError;
+				console.error('Google redirect sign in failed:', redirectError);
 			}
 			return;
 		}
 
 		try {
-			await signInWithRedirect(auth, provider);
+			await signInWithPopup(auth, provider);
 		} catch (popupError) {
 			const errorCode = popupError?.code || '';
 			if (!shouldUseRedirectFallback(errorCode)) {
 				sessionStorage.removeItem(GOOGLE_SIGN_IN_REQUESTED_KEY);
-				throw popupError;
+				console.error('Google popup sign in failed:', popupError);
+				return;
 			}
 
-			await signInWithRedirect(auth, provider);
+			try {
+				await signInWithRedirect(auth, provider);
+			} catch (redirectError) {
+				sessionStorage.removeItem(GOOGLE_SIGN_IN_REQUESTED_KEY);
+				console.error('Google redirect fallback failed:', redirectError);
+			}
 		}
 	};
 
