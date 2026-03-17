@@ -19,19 +19,39 @@ export async function apiRequest(endpoint, method = 'GET', body = null, options 
 
 	try {
 		const response = await fetch(`${BASE_URL}${endpoint}`, config);
+		const responseText = await response.text();
+		const isJsonResponse = response.headers.get('content-type')?.includes('application/json');
+
+		const parseResponseBody = () => {
+			if (!responseText) {
+				return null;
+			}
+
+			if (!isJsonResponse) {
+				return responseText;
+			}
+
+			try {
+				return JSON.parse(responseText);
+			} catch (error) {
+				console.warn('Failed to parse response JSON', error);
+				return null;
+			}
+		};
+
+		const parsedBody = parseResponseBody();
 
 		if (!response.ok) {
 			let errorMessage = response.statusText;
-			try {
-				const errorData = await response.json();
-				errorMessage = errorData.err || errorMessage;
-			} catch (e) {
-				console.warn('Failed to parse error response JSON', e);
+			if (parsedBody && typeof parsedBody === 'object') {
+				errorMessage = parsedBody.err || parsedBody.message || errorMessage;
+			} else if (typeof parsedBody === 'string' && parsedBody.trim()) {
+				errorMessage = parsedBody;
 			}
 			throw new Error(errorMessage);
 		}
 
-		return await response.json();
+		return parsedBody;
 	} catch (error) {
 		console.error(`API request failed: ${error.message}`);
 		throw error;

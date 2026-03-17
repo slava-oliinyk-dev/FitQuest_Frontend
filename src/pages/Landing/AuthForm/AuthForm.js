@@ -37,6 +37,10 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 	const isRegister = mode === 'register';
 	const isLogin = mode === 'login';
 
+	const getErrorMessage = (error) => {
+		return error?.response?.data?.err || error?.response?.data?.message || error?.message || 'An error occurred';
+	};
+
 	const handleBlur = (e) => {
 		const { name, value } = e.target;
 		const updatedData = { ...registerData, [name]: value };
@@ -106,7 +110,12 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 	};
 
 	const handleChangeBox = (event) => {
-		setIsChecked(event.target.checked);
+		const isPolicyAccepted = event.target.checked;
+		setIsChecked(isPolicyAccepted);
+
+		if (isPolicyAccepted) {
+			setCheckboxError('');
+		}
 	};
 
 	const handleParametersReceive = (e) => {
@@ -136,8 +145,10 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 			uniqueLogin: registerData.uniqueLogin,
 		};
 		try {
-			const sendLoginData = await apiRequest(`/users/register`, 'POST', body, { withCredentials: true });
+			await apiRequest(`/users/register`, 'POST', body, { withCredentials: true });
 			setLoginError(null);
+			setCheckboxError('');
+			setCurrentParametersValueReceive(registerData.email);
 			openModal();
 			setRegisterData({
 				email: '',
@@ -146,13 +157,13 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 				uniqueLogin: '',
 			});
 		} catch (error) {
-			setLoginError('Invalid login or password');
-			setRegisterData({
-				email: '',
-				password: '',
-				name: '',
-				uniqueLogin: '',
-			});
+			const serverMessage = getErrorMessage(error);
+			setLoginError(serverMessage);
+
+			if (serverMessage.toLowerCase().includes('confirm your email')) {
+				setCurrentParametersValueReceive(registerData.email);
+				openModal();
+			}
 		}
 	};
 
@@ -191,15 +202,20 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 
 			setLoginError('Login succeeded, but failed to read user profile. Please refresh the page.');
 		} catch (error) {
-			const serverMessage = error?.response?.data?.err || error?.response?.data?.message || error.message || 'An error occurred';
+			const serverMessage = getErrorMessage(error);
 
 			setLoginError(serverMessage);
 			setRegisterData({
-				email: '',
+				email: registerData.email,
 				password: '',
 				name: '',
 				uniqueLogin: '',
 			});
+
+			if (serverMessage.toLowerCase().includes('confirm your email')) {
+				setCurrentParametersValueReceive(registerData.email);
+				openModal();
+			}
 		}
 	};
 
@@ -230,7 +246,7 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 			setCurrentParametersValueReceive('');
 			setErrorsReceive('');
 		} catch (error) {
-			const serverMessage = error?.response?.data?.err || error?.response?.data?.message || error.message || 'An error occurred';
+			const serverMessage = getErrorMessage(error);
 
 			setErrorsReceive(serverMessage);
 		}
@@ -335,7 +351,8 @@ const AuthForm = ({ mode, onSwitchMode }) => {
 							<div className="modal__register-content">
 								<h2 className="modal__register-title">Thank You for Signing Up!</h2>
 								<p className="modal__register-subtitle">
-									We&apos;ve sent a confirmation email to your inbox. Please check your email and click on the verification link to complete your registration.
+									We&apos;ve sent a confirmation email to your inbox{currentParametersValueReceive ? ` (${currentParametersValueReceive})` : ''}. Please check your email and click on the verification
+									link to complete your registration.
 								</p>
 								<h2 className="modal__register-title-receive">Didn&apos;t receive the letter?</h2>
 								<form className="modal__register-form" noValidate>
