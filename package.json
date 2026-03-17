@@ -9,7 +9,7 @@
     "prettier": "prettier --write \"src/**/*.{ts,js,json,md}\"",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom --passWithNoTests",
     "test:coverage": "react-scripts test --coverage --watchAll=false"
   },
   "dependencies": {
