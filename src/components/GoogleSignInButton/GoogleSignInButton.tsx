@@ -2,10 +2,11 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { GoogleAuthProvider, setPersistence, signInWithRedirect, signInWithPopup, onAuthStateChanged, browserLocalPersistence, browserSessionPersistence, getRedirectResult } from 'firebase/auth';
 import './GoogleSignInButton.sass';
 import { auth } from '../../firebaseConfig.tsx';
+import { getApiBaseUrl } from '../../api/getApiBaseUrl';
 import { FaGooglePlus } from 'react-icons/fa6';
 
 export function GoogleSignInButton() {
-	const API = process.env.REACT_APP_API_URL;
+	const API = getApiBaseUrl();
 	const REDIRECT_AFTER = '/app';
 	const GOOGLE_SIGN_IN_REQUESTED_KEY = 'googleSignInRequested';
 	const GOOGLE_SIGN_IN_PENDING_KEY = 'googleSignInPending';
@@ -29,16 +30,19 @@ export function GoogleSignInButton() {
 		sessionStorage.setItem(GOOGLE_SIGN_IN_PENDING_KEY, 'true');
 	}, [GOOGLE_SIGN_IN_PENDING_KEY, GOOGLE_SIGN_IN_REQUESTED_KEY]);
 
+	const hasPendingGoogleSignIn = useCallback(() => {
+		const signInRequested = sessionStorage.getItem(GOOGLE_SIGN_IN_REQUESTED_KEY) === 'true' || localStorage.getItem(GOOGLE_SIGN_IN_REQUESTED_KEY) === 'true';
+		const signInPending = sessionStorage.getItem(GOOGLE_SIGN_IN_PENDING_KEY) === 'true' || localStorage.getItem(GOOGLE_SIGN_IN_PENDING_KEY) === 'true';
+
+		return signInRequested || signInPending;
+	}, [GOOGLE_SIGN_IN_PENDING_KEY, GOOGLE_SIGN_IN_REQUESTED_KEY]);
+
 	const handleAuthenticatedUser = useCallback(
-		async (user) => {
+		async (user, options = {}) => {
+			const { allowWithoutPendingState = false } = options;
 			if (!user || !API || redirectInProgressRef.current) return;
 
-			const signInRequested = sessionStorage.getItem(GOOGLE_SIGN_IN_REQUESTED_KEY) === 'true' || localStorage.getItem(GOOGLE_SIGN_IN_REQUESTED_KEY) === 'true';
-			const signInPending = sessionStorage.getItem(GOOGLE_SIGN_IN_PENDING_KEY) === 'true' || localStorage.getItem(GOOGLE_SIGN_IN_PENDING_KEY) === 'true';
-
-			const shouldFinalizeGoogleSignIn = signInRequested || signInPending || !!user.providerData?.some((provider) => provider.providerId === 'google.com');
-
-			if (!shouldFinalizeGoogleSignIn) return;
+			if (!allowWithoutPendingState && !hasPendingGoogleSignIn()) return;
 
 			redirectInProgressRef.current = true;
 			clearGoogleSignInState();
@@ -46,7 +50,8 @@ export function GoogleSignInButton() {
 			const idToken = await user.getIdToken();
 			window.location.href = `${API}/users/firebase-redirect` + `?token=${idToken}` + `&redirect=${encodeURIComponent(window.location.origin + REDIRECT_AFTER)}`;
 		},
-		[API, GOOGLE_SIGN_IN_PENDING_KEY, GOOGLE_SIGN_IN_REQUESTED_KEY, REDIRECT_AFTER, clearGoogleSignInState],
+
+		[API, REDIRECT_AFTER, clearGoogleSignInState, hasPendingGoogleSignIn],
 	);
 
 	useEffect(() => {
@@ -57,7 +62,7 @@ export function GoogleSignInButton() {
 		getRedirectResult(auth)
 			.then((result) => {
 				if (!result?.user) return;
-				return handleAuthenticatedUser(result.user);
+				return handleAuthenticatedUser(result.user, { allowWithoutPendingState: true });
 			})
 			.catch((error) => {
 				clearGoogleSignInState();
@@ -65,12 +70,12 @@ export function GoogleSignInButton() {
 			});
 
 		const unsubscribe = onAuthStateChanged(auth, async (user) => {
-			if (!user) return;
+			if (!user || !hasPendingGoogleSignIn()) return;
 			await handleAuthenticatedUser(user);
 		});
 
 		return () => unsubscribe();
-	}, [clearGoogleSignInState, handleAuthenticatedUser, isMobileBrowser]);
+	}, [clearGoogleSignInState, handleAuthenticatedUser, hasPendingGoogleSignIn, isMobileBrowser]);
 
 	const getMaskedValue = (value?: string) => {
 		if (!value) return 'missing';

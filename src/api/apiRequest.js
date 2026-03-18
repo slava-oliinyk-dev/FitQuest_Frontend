@@ -1,7 +1,8 @@
-const BASE_URL = process.env.REACT_APP_API_URL || '';
+import { getApiBaseUrl } from './getApiBaseUrl';
 
 export async function apiRequest(endpoint, method = 'GET', body = null, options = {}) {
 	const { headers = {}, withCredentials = false } = options;
+	const BASE_URL = getApiBaseUrl();
 
 	const config = {
 		method,
