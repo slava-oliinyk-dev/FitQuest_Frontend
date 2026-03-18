@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://cooperative-encouragement-production.up.railway.app/:path*"
+      "destination": "https://fitnesswebbackend-production-120a.up.railway.app/:path*"
     }
   ]
 }
