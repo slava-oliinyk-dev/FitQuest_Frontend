@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { GoogleAuthProvider, setPersistence, signInWithRedirect, signInWithPopup, onAuthStateChanged, browserLocalPersistence, browserSessionPersistence, getRedirectResult } from 'firebase/auth';
 import './GoogleSignInButton.sass';
 import { auth } from '../../firebaseConfig.tsx';
@@ -9,28 +9,48 @@ export function GoogleSignInButton() {
 	const REDIRECT_AFTER = '/app';
 	const GOOGLE_SIGN_IN_REQUESTED_KEY = 'googleSignInRequested';
 	const GOOGLE_SIGN_IN_PENDING_KEY = 'googleSignInPending';
+	const redirectInProgressRef = useRef(false);
+
+	const isMobileBrowser = useCallback(() => {
+		return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+	}, []);
+
+	const clearGoogleSignInState = useCallback(() => {
+		localStorage.removeItem(GOOGLE_SIGN_IN_REQUESTED_KEY);
+		localStorage.removeItem(GOOGLE_SIGN_IN_PENDING_KEY);
+		sessionStorage.removeItem(GOOGLE_SIGN_IN_REQUESTED_KEY);
+		sessionStorage.removeItem(GOOGLE_SIGN_IN_PENDING_KEY);
+	}, [GOOGLE_SIGN_IN_PENDING_KEY, GOOGLE_SIGN_IN_REQUESTED_KEY]);
+
+	const markGoogleSignInStarted = useCallback(() => {
+		localStorage.setItem(GOOGLE_SIGN_IN_REQUESTED_KEY, 'true');
+		localStorage.setItem(GOOGLE_SIGN_IN_PENDING_KEY, 'true');
+		sessionStorage.setItem(GOOGLE_SIGN_IN_REQUESTED_KEY, 'true');
+		sessionStorage.setItem(GOOGLE_SIGN_IN_PENDING_KEY, 'true');
+	}, [GOOGLE_SIGN_IN_PENDING_KEY, GOOGLE_SIGN_IN_REQUESTED_KEY]);
 
 	const handleAuthenticatedUser = useCallback(
 		async (user) => {
-			if (!user || !API) return;
+			if (!user || !API || redirectInProgressRef.current) return;
 
-			const signInRequested = sessionStorage.getItem(GOOGLE_SIGN_IN_REQUESTED_KEY) === 'true';
-			const signInPending = sessionStorage.getItem(GOOGLE_SIGN_IN_PENDING_KEY) === 'true';
+			const signInRequested = sessionStorage.getItem(GOOGLE_SIGN_IN_REQUESTED_KEY) === 'true' || localStorage.getItem(GOOGLE_SIGN_IN_REQUESTED_KEY) === 'true';
+			const signInPending = sessionStorage.getItem(GOOGLE_SIGN_IN_PENDING_KEY) === 'true' || localStorage.getItem(GOOGLE_SIGN_IN_PENDING_KEY) === 'true';
 
-			if (!signInRequested && !signInPending) return;
+			const shouldFinalizeGoogleSignIn = signInRequested || signInPending || !!user.providerData?.some((provider) => provider.providerId === 'google.com');
 
-			sessionStorage.removeItem(GOOGLE_SIGN_IN_REQUESTED_KEY);
-			sessionStorage.removeItem(GOOGLE_SIGN_IN_PENDING_KEY);
+			if (!shouldFinalizeGoogleSignIn) return;
+
+			redirectInProgressRef.current = true;
+			clearGoogleSignInState();
 
 			const idToken = await user.getIdToken();
 			window.location.href = `${API}/users/firebase-redirect` + `?token=${idToken}` + `&redirect=${encodeURIComponent(window.location.origin + REDIRECT_AFTER)}`;
 		},
-		[API, GOOGLE_SIGN_IN_PENDING_KEY, GOOGLE_SIGN_IN_REQUESTED_KEY, REDIRECT_AFTER],
+		[API, GOOGLE_SIGN_IN_PENDING_KEY, GOOGLE_SIGN_IN_REQUESTED_KEY, REDIRECT_AFTER, clearGoogleSignInState],
 	);
 
 	useEffect(() => {
-		const isiOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent) && /Version\/[\d.]+.*Safari/.test(navigator.userAgent);
-		const persistence = isiOSSafari ? browserSessionPersistence : browserLocalPersistence;
+		const persistence = isMobileBrowser() ? browserSessionPersistence : browserLocalPersistence;
 
 		setPersistence(auth, persistence).catch(console.error);
 
@@ -40,8 +60,7 @@ export function GoogleSignInButton() {
 				return handleAuthenticatedUser(result.user);
 			})
 			.catch((error) => {
-				sessionStorage.removeItem(GOOGLE_SIGN_IN_REQUESTED_KEY);
-				sessionStorage.removeItem(GOOGLE_SIGN_IN_PENDING_KEY);
+				clearGoogleSignInState();
 				console.error('Google redirect result failed:', error);
 			});
 
@@ -51,7 +70,7 @@ export function GoogleSignInButton() {
 		});
 
 		return () => unsubscribe();
-	}, [handleAuthenticatedUser]);
+	}, [clearGoogleSignInState, handleAuthenticatedUser, isMobileBrowser]);
 
 	const getMaskedValue = (value?: string) => {
 		if (!value) return 'missing';
@@ -66,16 +85,14 @@ export function GoogleSignInButton() {
 
 	const handleSignIn = async () => {
 		const provider = new GoogleAuthProvider();
-		const isiOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent) && /Version\/[\d.]+.*Safari/.test(navigator.userAgent);
-		sessionStorage.setItem(GOOGLE_SIGN_IN_REQUESTED_KEY, 'true');
-		sessionStorage.setItem(GOOGLE_SIGN_IN_PENDING_KEY, 'true');
+		const shouldUseRedirect = isMobileBrowser();
+		markGoogleSignInStarted();
 
-		if (isiOSSafari) {
+		if (shouldUseRedirect) {
 			try {
 				await signInWithRedirect(auth, provider);
 			} catch (redirectError) {
-				sessionStorage.removeItem(GOOGLE_SIGN_IN_REQUESTED_KEY);
-				sessionStorage.removeItem(GOOGLE_SIGN_IN_PENDING_KEY);
+				clearGoogleSignInState();
 				console.error('Google redirect sign in failed:', redirectError);
 			}
 			return;
@@ -91,8 +108,7 @@ export function GoogleSignInButton() {
 			});
 			const errorCode = popupError?.code || '';
 			if (!shouldUseRedirectFallback(errorCode)) {
-				sessionStorage.removeItem(GOOGLE_SIGN_IN_REQUESTED_KEY);
-				sessionStorage.removeItem(GOOGLE_SIGN_IN_PENDING_KEY);
+				clearGoogleSignInState();
 				console.error('Google popup sign in failed:', popupError);
 				return;
 			}
@@ -100,8 +116,7 @@ export function GoogleSignInButton() {
 			try {
 				await signInWithRedirect(auth, provider);
 			} catch (redirectError) {
-				sessionStorage.removeItem(GOOGLE_SIGN_IN_REQUESTED_KEY);
-				sessionStorage.removeItem(GOOGLE_SIGN_IN_PENDING_KEY);
+				clearGoogleSignInState();
 				console.error('Google redirect fallback failed:', redirectError);
 			}
 		}
