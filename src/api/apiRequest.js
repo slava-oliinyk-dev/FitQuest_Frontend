@@ -1,8 +1,18 @@
-import { getApiBaseUrl } from './getApiBaseUrl';
+const getBaseUrl = () => {
+	const envBaseUrl = process.env.REACT_APP_API_URL;
+
+	if (typeof envBaseUrl !== 'string') {
+		return '/api';
+	}
+
+	const normalizedBaseUrl = envBaseUrl.trim().replace(/\/+$/, '');
+
+	return normalizedBaseUrl || '/api';
+};
 
 export async function apiRequest(endpoint, method = 'GET', body = null, options = {}) {
 	const { headers = {}, withCredentials = false } = options;
-	const BASE_URL = getApiBaseUrl();
+	const BASE_URL = getBaseUrl();
 
 	const config = {
 		method,

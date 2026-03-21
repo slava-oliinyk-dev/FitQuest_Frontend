@@ -3,6 +3,7 @@
 **Live Demo:** [fitquest.fit](https://fitquest.fit/)  
 **Backend Repository:** [FitQuest_Backend](https://github.com/ViacheslavOl/FitQuest_Backend)  
 **Backend API:** [fitnesswebbackend-production-9672.up.railway.app](https://fitnesswebbackend-production-9672.up.railway.app/)
+**Screenshots:** [See the Screenshots section below](#screenshots)
 
 ## Project Overview
 
@@ -268,3 +269,5 @@ I also gained more hands-on experience with integrating a frontend with a backen
 Another important part of this project was learning how to connect product structure with frontend implementation. Instead of building isolated pages, I had to think about how the whole user flow works, from the landing page to registration, login, and workout management inside the app.
 
 Overall, this project helped me feel more confident building a frontend application that is closer to a real product than a simple training React project.
+
+## Screenshots

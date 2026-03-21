@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect, useContext, ReactNode } from 'react';
-import { getApiBaseUrl } from './api/getApiBaseUrl';
 
 interface AuthContextType {
 	user: any;
@@ -18,7 +17,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 	const [loading, setLoading] = useState<boolean>(true);
 
 	useEffect(() => {
-		const BASE_URL = getApiBaseUrl();
+		const BASE_URL = process.env.REACT_APP_API_URL?.trim().replace(/\/+$/, '') || '/api';
 		fetch(`${BASE_URL}/users/me`, {
 			method: 'GET',
 			headers: {

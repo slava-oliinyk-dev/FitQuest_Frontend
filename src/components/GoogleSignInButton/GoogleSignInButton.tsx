@@ -3,7 +3,6 @@ import type { User } from 'firebase/auth';
 import { GoogleAuthProvider, setPersistence, signInWithRedirect, signInWithPopup, onAuthStateChanged, browserLocalPersistence, browserSessionPersistence, getRedirectResult } from 'firebase/auth';
 import './GoogleSignInButton.sass';
 import { auth } from '../../firebaseConfig.tsx';
-import { getApiBaseUrl } from '../../api/getApiBaseUrl';
 import { FaGooglePlus } from 'react-icons/fa6';
 
 type HandleAuthenticatedUserOptions = {
@@ -16,7 +15,7 @@ type FirebaseLikeError = {
 };
 
 export function GoogleSignInButton() {
-	const API = getApiBaseUrl();
+	const API = process.env.REACT_APP_API_URL?.trim().replace(/\/+$/, '') || '/api';
 	const REDIRECT_AFTER = '/app';
 	const GOOGLE_SIGN_IN_REQUESTED_KEY = 'googleSignInRequested';
 	const GOOGLE_SIGN_IN_PENDING_KEY = 'googleSignInPending';

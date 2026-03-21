@@ -24,12 +24,6 @@ const firebaseConfig = {
 	measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
-if (!firebaseConfig.apiKey) {
-	console.error('Firebase API key is missing. Check REACT_APP_FIREBASE_API_KEY in your environment variables.');
-} else {
-	console.info('Firebase config loaded. API key fingerprint:', getMaskedValue(firebaseConfig.apiKey));
-}
-
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
