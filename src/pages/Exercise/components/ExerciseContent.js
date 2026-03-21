@@ -95,7 +95,7 @@ function ExerciseContent({ page, exercisesPerPage, onDayCardId, setExercises, ex
 
 	const handleNotesBlur = async (exercise, note) => {
 		try {
-			await apiRequest(`/exercise/${onDayCardId}/note/${exercise.id}`, 'PUT', { note: note }, { withCredentials: true });
+			await apiRequest(`/exercise/${onDayCardId}/exercises/${exercise.id}/note`, 'PUT', { note: note }, { withCredentials: true });
 			setCurrentNotesValue('');
 			setExercises((prevExercises) => prevExercises.map((c) => (c.id === exercise.id ? { ...c, note: note } : c)));
 		} catch (error) {

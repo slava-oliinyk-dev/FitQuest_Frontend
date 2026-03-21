@@ -154,7 +154,7 @@ This frontend connects to an external backend API.
 - `DELETE /day/:programId/days/:dayId`
 - `GET /exercise/:dayId/exercises`
 - `POST /exercise/:dayId/exercises`
-- `PUT /exercise/:dayId/exercises/:exerciseId`
+- `PUT /exercise/:dayId/exercises/:exerciseId/note`
 - `DELETE /exercise/:dayId/exercises/:exerciseId`
 
 ### Other Endpoint Used
