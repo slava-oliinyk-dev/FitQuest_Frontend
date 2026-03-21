@@ -271,3 +271,43 @@ Another important part of this project was learning how to connect product struc
 Overall, this project helped me feel more confident building a frontend application that is closer to a real product than a simple training React project.
 
 ## Screenshots
+
+### Home Page
+
+![Home Page](./screenshots/Home.png)
+
+### About App
+
+![About App](./screenshots/AboutApp.png)
+
+### Pricing
+
+![Pricing](./screenshots/Price.png)
+
+### Login
+
+![Login](./screenshots/Login.png)
+
+### Register
+
+![Register](./screenshots/Register.png)
+
+### Consultation Form
+
+![Consultation Form](./screenshots/Consultation.png)
+
+### Program Page
+
+![Program Page](./screenshots/Program.png)
+
+### Workout Day
+
+![Workout Day](./screenshots/Day.png)
+
+### Exercise Details
+
+![Exercise Details](./screenshots/Exercise.png)
+
+### Exercise Notes
+
+![Exercise Notes](./screenshots/ExerciseNote.png)
