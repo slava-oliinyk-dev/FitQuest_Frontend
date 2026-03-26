@@ -2,7 +2,7 @@
 
 **Live Demo:** [fitquest.fit](https://fitquest.fit/)  
 **Backend Repository:** [FitQuest_Backend](https://github.com/ViacheslavOl/FitQuest_Backend)  
-**Backend API:** [fitnesswebbackend-production-9672.up.railway.app](https://fitnesswebbackend-production-9672.up.railway.app/)
+**Backend API:** [fitnesswebbackend-production-9672.up.railway.app](https://fitnesswebbackend-production-9672.up.railway.app/)  
 **Screenshots:** [See the Screenshots section below](#screenshots)
 
 ## Project Overview
